@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Example {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id        String     @id @default(cuid())
+  name      String
+  email     String     @unique
+  events    Event[]
+  reminders Reminder[]
+}
+
+model Category {
+  id     String  @id @default(cuid())
+  name   String  @unique
+  events Event[]
+}
+
+model Event {
+  id          String     @id @default(cuid())
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  title       String
+  description String?
+  location    String
+  link        String     @unique
+  virtual     Boolean
+  startDate   DateTime
+  endDate     DateTime
+  category    Category   @relation(fields: [categoryId], references: [id])
+  categoryId  String
+  organizer   User       @relation(fields: [organizerId], references: [id])
+  organizerId String
+  reminders   Reminder[]
+}
+
+model Reminder {
+  id        String   @id @default(cuid())
+  user      User     @relation(references: [id], fields: [userId])
+  userId    String
+  event     Event    @relation(references: [id], fields: [eventId])
+  eventId   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
