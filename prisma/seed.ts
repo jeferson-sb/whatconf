@@ -16,7 +16,7 @@ const categories = [
 async function main() {
   categories.forEach(async category => {
     await prisma.category.upsert({
-      update: {},
+      update: { name: category },
       where: { name: category },
       create: { name: category }
     })
