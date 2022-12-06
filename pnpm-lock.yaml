@@ -14,10 +14,12 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.33.0
   '@typescript-eslint/parser': ^5.33.0
   '@vitejs/plugin-react': ^2.2.0
-  eslint: ^8.26.0
+  clsx: ^1.2.1
+  eslint: ^8.27.0
   eslint-config-next: 13.0.2
   happy-dom: ^7.7.0
   next: 13.0.2
+  prettier: ^2.8.0
   prisma: ^4.5.0
   react: 18.2.0
   react-dom: 18.2.0
@@ -34,6 +36,7 @@ dependencies:
   '@trpc/next': 10.0.0-rc.4_skfskd5lhpkyk3yzyrw6tb7uyi
   '@trpc/react-query': 10.0.0-rc.4_q2ykz5ry7uzzhix6pf4rsmetbu
   '@trpc/server': 10.0.0-rc.4
+  clsx: 1.2.1
   next: 13.0.2_mqvh5p7ejg4taogoj6tpk3gd5a
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -51,6 +54,7 @@ devDependencies:
   eslint: 8.27.0
   eslint-config-next: 13.0.2_rmayb2veg2btbq6mbmnyivgasy
   happy-dom: 7.7.0
+  prettier: 2.8.0
   prisma: 4.6.1
   ts-node: 10.9.1_cbe7ovvae6zqfnmtgctpgpys54
   typescript: 4.8.4
@@ -952,6 +956,11 @@ packages:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
     dev: false
 
+  /clsx/1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+    dev: false
+
   /convert-source-map/1.9.0:
     resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}
 
@@ -1836,6 +1845,12 @@ packages:
       nanoid: 3.3.4
       picocolors: r2.cnpmjs.org/picocolors/1.0.0
       source-map-js: 1.0.2
+    dev: true
+
+  /prettier/2.8.0:
+    resolution: {integrity: sha512-9Lmg8hTFZKG0Asr/kW9Bp8tJjRVluO8EJQVfY2T7FMw9T5jy4I/Uvx0Rca/XWf50QQ1/SS48+6IJWnrb+2yemA==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
     dev: true
 
   /pretty-format/27.5.1:
