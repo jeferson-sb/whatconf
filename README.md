@@ -1,4 +1,6 @@
-# Create T3 App
+# WhatConf
+
+![homepage](https://user-images.githubusercontent.com/30840709/211813411-cb694da2-4d57-4472-af4d-38ba3b9831e4.png)
 
 This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
 
