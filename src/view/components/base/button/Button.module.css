@@ -1,0 +1,25 @@
+.button {
+  --text-color: inherit;
+  --bg-color: transparent;
+  --border: initial;
+
+  display: inline-flex;
+  align-items: center;
+  font-family: inherit;
+  cursor: pointer;
+  min-height: 44px;
+
+  color: var(--gray-2);
+  background: var(--gray-10);
+  border: var(--border-size-1) solid var(--gray-11);
+  border-radius: var(--radius-conditional-2);
+
+  transition: background 400ms ease-out;
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+}
+
+.button svg {
+  width: 24px;
+  margin-inline-end: 0.8em;
+}
