@@ -10,6 +10,7 @@ const FeedList = ({ events }: FeedListProps) => (
       <FeedCard
         key={event.id}
         title={event.title}
+        virtual={event.virtual}
         startDate={event.startDate}
         endDate={event.endDate}
         description={event.description}

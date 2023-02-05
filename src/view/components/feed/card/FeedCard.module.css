@@ -21,6 +21,13 @@
   color: var(--gray-11);
 }
 
+.category {
+  text-transform: uppercase;
+  font-size: var(--font-size-0);
+  letter-spacing: var(--font-letterspacing-2);
+  color: var(--gray-6);
+}
+
 .details {
   display: flex;
   gap: var(--size-2);
@@ -29,7 +36,7 @@
   padding-block: var(--size-2);
   background-color: var(--orange-1);
   border-radius: var(--radius-3);
-  width: max-content;
+  width: fit-content;
 }
 
 .details small {
@@ -53,7 +60,16 @@
   flex: 1;
 }
 
-.button, .link {
+.actions :first-child {
+  border-radius: 0 0 0 var(--radius-conditional-2);
+}
+
+.actions :last-child {
+  border-radius: 0 0 var(--radius-conditional-2) 0;
+}
+
+.button,
+.link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
