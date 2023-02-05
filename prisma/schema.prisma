@@ -20,7 +20,7 @@ model User {
   id        String     @id @default(cuid())
   name      String
   email     String     @unique
-  events    Event[]
+  // events    Event[]
   reminders Reminder[]
 }
 
@@ -43,8 +43,6 @@ model Event {
   endDate     DateTime
   category    Category   @relation(fields: [categoryId], references: [id])
   categoryId  String
-  organizer   User       @relation(fields: [organizerId], references: [id])
-  organizerId String
   reminders   Reminder[]
 }
 
