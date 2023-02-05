@@ -1,0 +1,9 @@
+.stack {
+  --_spacing: calc(var(--spacing) * 0.25rem);
+
+  display: flex;
+  flex-direction: var(--direction, column);
+  gap: var(--_spacing, var(--size-2));
+  align-items: stretch;
+  justify-content: var(--justify, stretch);
+}
