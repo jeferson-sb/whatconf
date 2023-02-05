@@ -1,0 +1,4 @@
+.title {
+  font-size: var(--font-size-4);
+  margin-block-end: var(--size-4);
+}
