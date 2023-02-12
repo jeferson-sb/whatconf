@@ -13,36 +13,41 @@ const Create: NextPage = () => {
   const categories = trpc.category.all.useQuery()
   const events = trpc.conference.create.useMutation()
 
-  const handleSubmission = useCallback((values: CreateFormState) => {
-    const {
-      title,
-      description,
-      link,
-      category,
-      location,
-      virtual,
-      startDate,
-      endDate,
-    } = values
+  const handleSubmission = useCallback(
+    (values: CreateFormState) => {
+      const {
+        title,
+        description,
+        link,
+        category,
+        location,
+        virtual,
+        startDate,
+        endDate,
+      } = values
 
-    const queryCategory = categories?.data?.find(
-      (c) => c.name.toLowerCase() === category
-    )
-    const categoryId = queryCategory?.id
+      const queryCategory = categories?.data?.find(
+        (c) => c.name.toLowerCase() === category
+      )
+      const categoryId = queryCategory?.id
 
-    events.mutate({
-      title,
-      description,
-      categoryId,
-      location,
-      virtual,
-      link,
-      startDate: new Date(startDate),
-      endDate: new Date(endDate),
-    })
+      console.log('categoryId is', categoryId)
 
-    router.push('/')
-  }, [])
+      events.mutate({
+        title,
+        description,
+        categoryId,
+        location,
+        virtual,
+        link,
+        startDate: new Date(startDate),
+        endDate: new Date(endDate),
+      })
+
+      router.push('/')
+    },
+    [categories]
+  )
 
   return (
     <Container>
