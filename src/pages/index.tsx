@@ -1,5 +1,7 @@
 import { type NextPage } from 'next'
 import Link from 'next/link'
+import { useCallback } from 'react'
+import { Conference } from '../domain/Conference'
 
 import { trpc } from '../utils/trpc'
 import { Button } from '../view/components/base/button/Button'
@@ -11,6 +13,11 @@ import styles from './index.module.css'
 
 const Home: NextPage = () => {
   const events = trpc.conference.all.useQuery()
+  const users = trpc.user.all.useQuery()
+
+  const handleSubscribe = useCallback((event: Conference.Type) => {
+    // reminder.mutate({ userId: currentUser?.id, eventId: event.id })
+  }, [])
 
   return (
     <Container>
@@ -21,7 +28,7 @@ const Home: NextPage = () => {
         {events.isLoading ? (
           <p>Loading...</p>
         ) : events?.data?.length ? (
-          <FeedList events={events.data} />
+          <FeedList events={events.data} onSubscribe={handleSubscribe} />
         ) : null}
       </section>
     </Container>
