@@ -6,7 +6,7 @@ import styles from './FeedCard.module.css'
 
 type FeedCardProps = Omit<Conference.Type, 'organizerId' | 'categoryId'>
 
-const formattedDate = (date) =>
+const formattedDate = (date: Date) =>
   new Intl.DateTimeFormat('en', {
     year: 'numeric',
     month: 'short',

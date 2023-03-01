@@ -1,0 +1,119 @@
+.form {
+  margin-block-end: var(--size-8);
+}
+
+.form button[type='submit'] {
+  width: 100%;
+  justify-content: center;
+}
+
+.input {
+  --border-color: var(--gray-5);
+
+  font-size: var(--font-size-1);
+  padding-inline: var(--size-3);
+  height: var(--size-8);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-2);
+  background: inherit;
+}
+
+.input[aria-invalid='true'] {
+  --border-color: var(--red-2);
+}
+
+.textarea {
+  font-size: var(--font-size-1);
+  padding-inline: var(--size-3);
+  padding-block: var(--size-2);
+  min-height: var(--size-10);
+  line-height: var(--font-lineheight-2);
+  border: 2px solid var(--gray-5);
+  border-radius: var(--radius-2);
+  background: inherit;
+  resize: vertical;
+}
+
+.textarea:focus:not(:focus-visible),
+.input:focus:not(:focus-visible) {
+  outline-width: 0;
+  border-color: var(--gray-11);
+}
+
+.textarea:focus-visible,
+.input:focus-visible {
+  outline: 2px dashed var(--orange-4);
+  outline-offset: 3px;
+}
+
+.label {
+  display: block;
+  text-align: start;
+  font-size: var(--font-size-2);
+  margin-inline-end: var(--size-3);
+  margin-bottom: var(--size-2);
+  font-weight: var(--font-weight-5);
+}
+
+.input::placeholder {
+  color: var(--gray-6);
+}
+
+.select {
+  font-size: var(--font-size-1);
+  padding-inline: var(--size-3);
+  height: var(--size-8);
+  border: 2px solid var(--gray-5);
+  border-radius: var(--radius-2);
+  background: inherit;
+}
+
+.checkbox {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  color: var(--gray-8);
+}
+
+.checkboxInput {
+  appearance: none;
+  margin: 0;
+}
+
+.checkbox svg {
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 0.2em;
+  width: 1.5em;
+  height: 1.5em;
+  border: 2px solid currentColor;
+  margin-inline-end: 0.5em;
+}
+
+.checkbox svg path {
+  opacity: 0;
+}
+
+.checkboxInput:checked + svg path {
+  opacity: 1;
+}
+
+.checkboxInput:focus + svg {
+  outline: 2px dashed var(--orange-1);
+  outline-offset: 3px;
+}
+
+.checkboxInput:focus:not(:focus-visible) + svg {
+  outline: none;
+}
+
+.message {
+  display: block;
+  font-size: var(--font-size-1);
+  font-style: italic;
+  color: var(--color, var(--gray-11));
+}
+
+.messageError {
+  --color: var(--red-8);
+}

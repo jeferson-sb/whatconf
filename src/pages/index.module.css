@@ -1,1 +1,10 @@
-.feed {}
+.feed {
+  display: flex;
+  flex-flow: column wrap;
+  margin-block-end: var(--size-8);
+  gap: var(--size-1);
+}
+
+.feed a {
+  align-self: flex-start;
+}

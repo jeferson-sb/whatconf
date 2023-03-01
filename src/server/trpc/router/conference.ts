@@ -1,4 +1,4 @@
-import { publicProcedure, router } from "../trpc";
+import { publicProcedure, router } from '../trpc'
 import { z } from 'zod'
 
 export const confValidationSchema = z.object({
@@ -11,18 +11,15 @@ export const confValidationSchema = z.object({
   startDate: z.date(),
   endDate: z.date(),
   categoryId: z.string(),
-  organizerId: z.string()
 })
 
 export const confRouter = router({
   all: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.event.findMany();
+    return ctx.prisma.event.findMany()
   }),
-  getById: publicProcedure
-    .input(z.string())
-    .query(({ input: id, ctx }) => {
-      return ctx.prisma.event.findUnique({ where: { id } })
-    }),
+  getById: publicProcedure.input(z.string()).query(({ input: id, ctx }) => {
+    return ctx.prisma.event.findUnique({ where: { id } })
+  }),
   create: publicProcedure
     .input(confValidationSchema)
     .mutation(({ input, ctx }) => {
@@ -36,8 +33,7 @@ export const confRouter = router({
           startDate: input.startDate,
           endDate: input.endDate,
           categoryId: input.categoryId,
-          organizerId: input.organizerId
-        }
+        },
       })
     }),
   update: publicProcedure
@@ -54,8 +50,7 @@ export const confRouter = router({
           startDate: input.startDate,
           endDate: input.endDate,
           categoryId: input.categoryId,
-          organizerId: input.organizerId
-        }
+        },
       })
-    })
+    }),
 })
