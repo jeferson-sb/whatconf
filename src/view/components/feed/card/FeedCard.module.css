@@ -44,6 +44,13 @@
   align-items: center;
   font-size: var(--font-size-1);
   font-style: italic;
+  max-width: 40ch;
+}
+
+.details small span {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .details small svg {
@@ -80,7 +87,7 @@
   border: 0;
   border-top: 1px solid var(--gray-2);
   background-color: transparent;
-  transition-property: color, background-color;
+  transition-property: color;
   transition-duration: 400ms;
   transition-timing-function: ease-out;
 }
@@ -90,11 +97,10 @@
   text-decoration-line: none;
 }
 
-.link svg {
+:is(.link, .button) svg {
   margin-inline-end: var(--size-2);
 }
 
 :is(.button, .link):hover {
-  background-color: var(--violet-1);
   color: var(--violet-4);
 }

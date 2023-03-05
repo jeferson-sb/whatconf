@@ -1,17 +1,13 @@
 import { useId } from 'react'
 
 import { Conference } from '../../../../domain/Conference'
-import { Clock, Link as LinkIcon, Pin } from '../../icons'
+import { formattedDate } from '../../../formatters/date'
+import { Bell, Clock, Link as LinkIcon, Pin } from '../../icons'
 import styles from './FeedCard.module.css'
 
-type FeedCardProps = Omit<Conference.Type, 'organizerId' | 'categoryId'>
-
-const formattedDate = (date: Date) =>
-  new Intl.DateTimeFormat('en', {
-    year: 'numeric',
-    month: 'short',
-    day: '2-digit',
-  }).format(date)
+type FeedCardProps = Omit<Conference.Type, 'organizerId' | 'categoryId'> & {
+  onSubscribe: () => void
+}
 
 const FeedCard = ({
   title,
@@ -20,6 +16,7 @@ const FeedCard = ({
   endDate,
   link,
   location,
+  onSubscribe,
 }: FeedCardProps) => {
   const formattedStartDate = formattedDate(startDate)
   const formattedEndDate = formattedDate(endDate)
@@ -36,8 +33,9 @@ const FeedCard = ({
             <Clock width={20} height={20} /> {formattedStartDate} -{' '}
             {formattedEndDate}
           </small>
-          <small>
-            <Pin width={20} height={20} /> {location}
+          <small title={location}>
+            <Pin width={20} height={20} />
+            <span>{location}</span>
           </small>
         </div>
         <p>{description}</p>
@@ -48,7 +46,9 @@ const FeedCard = ({
           type="button"
           aria-labelledby={`button-${id} card-title-${id}`}
           className={styles.button}
+          onClick={onSubscribe}
         >
+          <Bell width={20} height={20} />
           Subscribe
         </button>
         <a
