@@ -5,9 +5,10 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "postinstall": "npm run db:generate",
     "db:generate": "prisma generate",
     "db:seed": "prisma db seed",
+    "db:migrate": "prisma migrate dev",
+    "db:setup": "npm run db:generate && npm run db:migrate && npm run db:seed",
     "lint": "next lint",
     "start": "next start",
     "test": "vitest"
