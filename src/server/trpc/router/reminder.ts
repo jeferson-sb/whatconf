@@ -18,4 +18,14 @@ export const reminderRouter = router({
       },
     })
   }),
+  agenda: publicProcedure
+    .input(z.string().cuid())
+    .query(async ({ input, ctx }) => {
+      const reminders = await ctx.prisma.reminder.findMany({
+        where: { userId: input },
+        include: { event: true },
+      })
+
+      return reminders
+    }),
 })
