@@ -4,8 +4,6 @@ import 'firebase/compat/firestore'
 import 'firebase/compat/storage'
 import { env } from '../env/env.mjs'
 
-console.log('all env new', env)
-
 const firebaseConfig = {
   apiKey: env.NEXT_PUBLIC_FIREBASE_APIKEY,
   authDomain: env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,

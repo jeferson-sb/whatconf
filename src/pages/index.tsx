@@ -1,12 +1,11 @@
 import { type NextPage } from 'next'
 import Link from 'next/link'
 import { useCallback, useEffect } from 'react'
-import { getMessaging as getMessagingAdmin } from 'firebase-admin/messaging'
 import { getToken, getMessaging } from 'firebase/messaging'
 import firebase from 'firebase/compat/app'
 
 import { trpc } from '../utils/trpc'
-import { Conference } from '../domain/Conference'
+import { type Conference } from '../domain/Conference'
 import { Button } from '../view/components/base/button/Button'
 import { Container } from '../view/components/container/Container'
 import { FeedList } from '../view/components/feed'
@@ -49,13 +48,15 @@ const Home: NextPage = () => {
         reminder.mutate({ userId, eventId: event.id })
 
         if (isProd()) {
-          const fcmToken = window.localStorage.getItem('@whatconf/fcm')
-          const response = await getMessagingAdmin().subscribeToTopic(
-            fcmToken,
-            event.title
-          )
-
-          if (response.errors) console.error(response.errors)
+          const fcmToken = window.localStorage.getItem('@whatconf/fcm') ?? ''
+          const response = await fetch('/api/subscribe', {
+            body: JSON.stringify({ fcmToken, event }),
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          })
+          const data = await response.json()
         }
 
         // TODO: Replace with an alert component
