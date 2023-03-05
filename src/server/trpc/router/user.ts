@@ -15,4 +15,12 @@ export const userRouter = router({
         },
       })
     }),
+  setFCMToken: publicProcedure
+    .input(z.object({ id: z.string(), token: z.string() }))
+    .mutation(({ input, ctx }) => {
+      return ctx.prisma.user.update({
+        where: { id: input.id },
+        data: { fcmToken: input.token },
+      })
+    }),
 })
