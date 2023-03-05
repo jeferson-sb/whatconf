@@ -13,9 +13,10 @@ import * as Category from '../../../domain/Category'
 type CreateFormProps = {
   onSubmit: (SubmitHandler: CreateFormState) => void
   categories: Category.Type[]
+  isLoading: boolean
 }
 
-const CreateForm = ({ onSubmit, categories }: CreateFormProps) => {
+const CreateForm = ({ onSubmit, categories, isLoading }: CreateFormProps) => {
   const { register, handleSubmit, watch, formState } = useForm<CreateFormState>(
     {
       resolver: zodResolver(creationValidationSchema),
@@ -183,7 +184,7 @@ const CreateForm = ({ onSubmit, categories }: CreateFormProps) => {
           )}
         </select>
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit">{isLoading ? 'Creating...' : 'Submit'}</Button>
       </Stack>
     </form>
   )
