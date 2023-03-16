@@ -2,9 +2,12 @@ import { Conference } from '../../../../domain/Conference'
 import { FeedCard } from '../card/FeedCard'
 import styles from './FeedList.module.css'
 
-type FeedListProps = { events: Conference.Type[] }
+type FeedListProps = {
+  events: Conference.Type[]
+  onSubscribe: (event: Conference.Type) => void
+}
 
-const FeedList = ({ events }: FeedListProps) => (
+const FeedList = ({ events, onSubscribe }: FeedListProps) => (
   <div className={styles.list}>
     {events.map((event) => (
       <FeedCard
@@ -16,6 +19,7 @@ const FeedList = ({ events }: FeedListProps) => (
         description={event.description}
         link={event.link}
         location={event.location}
+        onSubscribe={() => onSubscribe(event)}
       />
     ))}
   </div>

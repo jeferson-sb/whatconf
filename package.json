@@ -26,9 +26,12 @@
     "@trpc/server": "10.0.0-rc.4",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.7",
+    "firebase": "^9.17.1",
+    "firebase-admin": "^11.5.0",
     "next": "13.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-firebase-hooks": "^5.1.1",
     "react-hook-form": "^7.43.0",
     "superjson": "1.9.1",
     "zod": "^3.18.0"

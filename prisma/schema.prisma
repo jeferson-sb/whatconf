@@ -22,6 +22,7 @@ model User {
   email     String     @unique
   // events    Event[]
   reminders Reminder[]
+  fcmToken  String
 }
 
 model Category {
