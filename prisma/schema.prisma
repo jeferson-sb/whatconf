@@ -24,7 +24,7 @@ model User {
   image         String?
   // events    Event[]
 
-  fcmToken  String
+  fcmToken  String?
   reminders Reminder[]
   accounts  Account[]
   sessions  Session[]
