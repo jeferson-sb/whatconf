@@ -5,6 +5,19 @@
   gap: var(--size-1);
 }
 
-.feed a {
-  align-self: flex-start;
+.controls {
+  display: inline-flex;
+  padding: 1rem 0;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-2);
+}
+
+.dialog-actions {
+  padding-block: var(--size-1);
 }
