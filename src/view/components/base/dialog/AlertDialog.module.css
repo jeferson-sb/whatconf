@@ -1,0 +1,55 @@
+.overlay {
+  --backdrop: 210deg 10% 15%;
+
+  background-color: hsl(var(--backdrop) / 0.5);
+  position: fixed;
+  inset: 0;
+  z-index: var(--layer-1);
+}
+
+.content {
+  background-color: var(--gray-1);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-3);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(500px, 100% - 2rem);
+  padding: var(--size-5) var(--size-4);
+  z-index: var(--layer-2);
+}
+
+.title {
+  color: var(--violet-4);
+  font-size: var(--font-size-3);
+  font-weight: 500;
+}
+
+.description {
+  margin-block: var(--size-2);
+  color: var(--gray-7);
+  font-size: var(--font-size-1);
+  line-height: 1.5;
+}
+
+.close {
+  border: 0;
+  aspect-ratio: 1;
+  width: 36px;
+  border-radius: 50%;
+  background-color: var(--gray-3);
+  position: absolute;
+  top: 10%;
+  right: 4%;
+}
+
+.close:focus {
+  background-color: var(--gray-4);
+}
+
+.close svg {
+  width: calc(100% - 4px);
+  color: var(--gray-7);
+  margin: 0 auto;
+}

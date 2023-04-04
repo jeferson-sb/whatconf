@@ -1,7 +1,8 @@
 .button {
-  --text-color: inherit;
-  --bg-color: transparent;
-  --border: initial;
+  --_text-color: var(--gray-2);
+  --_bg-color: var(--gray-10);
+  --_bg-hover-color: var(--gray-9);
+  --_border-color: var(--gray-11);
 
   display: inline-flex;
   align-items: center;
@@ -9,17 +10,51 @@
   cursor: pointer;
   min-height: 44px;
 
-  color: var(--gray-2);
-  background: var(--gray-10);
-  border: var(--border-size-1) solid var(--gray-11);
+  color: var(--_text-color);
+  background: var(--_bg-color);
+  border: var(--border-size-1) solid var(--_border-color);
   border-radius: var(--radius-conditional-2);
 
   transition: background 400ms ease-out;
   padding: 0.5rem 1.5rem;
   text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.button-outline {
+  --_bg-color: transparent;
+  --_text-color: var(--gray-10);
+  --_bg-hover-color: var(--gray-5);
+
+  font-weight: 700;
+}
+
+.button::before {
+  --transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 0);
+
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background-color: var(--_bg-hover-color);
+
+  transform-origin: center;
+  transform: var(--transform);
+  transition: transform 500ms ease-in-out;
+  will-change: transform;
 }
 
 .button svg {
   width: 24px;
   margin-inline-end: 0.8em;
+}
+
+.button:hover::before {
+  --transform: translate3d(-50%, -50%, 0) scale3d(15, 15, 15);
 }

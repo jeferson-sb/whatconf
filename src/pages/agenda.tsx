@@ -1,14 +1,16 @@
 import type { NextPage } from 'next'
+import { useSession } from 'next-auth/react'
+import Link from 'next/link'
 
-import { trpc } from '../utils/trpc'
-import { Container } from '../view/components/container/Container'
+import { trpc } from '@/utils/trpc'
+import { Container } from '@/view/components/container/Container'
 
 import styles from './agenda.module.css'
-import { AgendaCard } from '../view/components/agenda'
+import { AgendaCard } from '@/view/components/agenda'
 
 const Agenda: NextPage = () => {
-  const user = trpc.user.all.useQuery()
-  const currentUser = user?.data?.length ? user?.data[0] : null
+  const { data: sessionData } = useSession()
+  const currentUser = sessionData?.user
   const agendaItems = trpc.reminder.agenda.useQuery(currentUser?.id)
 
   return (
@@ -16,7 +18,10 @@ const Agenda: NextPage = () => {
       <h2>Your current agenda:</h2>
       <ul className={styles.list}>
         {!currentUser ? (
-          <p>You need to be logged in!</p>
+          <p>
+            You are not authenticated yet.{' '}
+            <Link href="/api/auth/signin">Click here to log in!</Link>
+          </p>
         ) : agendaItems.data?.length ? (
           <>
             <h3 className={styles.upcoming}>Upcoming conferences</h3>

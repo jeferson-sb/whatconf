@@ -1,0 +1,33 @@
+.container {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding-inline: var(--size-4);
+  border-radius: var(--radius-4);
+  background: var(--gray-3);
+  border: 0.15rem solid var(--gray-4);
+}
+
+.name {
+  color: var(--gray-7);
+}
+
+.circle {
+  display: inline-flex;
+  justify-content: center;
+  align-items: baseline;
+  position: relative;
+  overflow: hidden;
+
+  inline-size: 48px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.container .circle {
+  margin-inline-start: -1.25rem;
+}
+
+.circle span {
+  font-size: 2em;
+}
