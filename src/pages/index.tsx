@@ -13,6 +13,7 @@ import { FeedList } from '@/view/components/feed'
 import { Plus } from '@/view/components/icons'
 import { Avatar } from '@/view/components/avatar'
 import { AlertDialog } from '@/view/components/base/dialog'
+import { Toast } from '@/view/components/toast/Toast'
 
 import { isProd } from '@/lib/detectEnv'
 import { vapidKey } from '@/lib/firebase'
@@ -25,6 +26,7 @@ const Home: NextPage = () => {
 
   const { data: sessionData } = useSession()
   const [isSubscribeDialogOpen, setSubscribeDialog] = useState(false)
+  const [isToastOpen, setToastOpen] = useState(false)
 
   const handleSignIn = () => signIn()
 
@@ -69,10 +71,7 @@ const Home: NextPage = () => {
         const data = await response.json()
       }
 
-      // TODO: Replace with an alert component
-      alert(
-        `You're now subscribed to ${event.title} and should receive notifications when the event starts!`
-      )
+      setToastOpen(true)
     } catch (error) {
       if (error instanceof Error) {
         throw new Error('Failed to subscribe user to conference', error)
@@ -99,6 +98,15 @@ const Home: NextPage = () => {
             </Button>
           </div>
         </AlertDialog>
+
+        <Toast
+          type="success"
+          open={isToastOpen}
+          swipe="up"
+          onOpenChange={setToastOpen}
+          title="Subscribed!"
+          description="You're now subscribed and will be notified a day before the event starts!"
+        />
 
         <div className={styles.controls}>
           <Button as={Link} href="/create">
