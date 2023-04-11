@@ -5,7 +5,8 @@
   align-items: center;
   padding: var(--size-8) var(--size-7);
   border-radius: var(--radius-conditional-3);
-  border: var(--border-size-1) solid var(--gray-1);
+  border: var(--border-size-1) solid var(--base-2);
+  background-color: var(--base-1);
   box-shadow: var(--shadow-1);
   margin-block-start: var(--size-8);
 }
@@ -21,7 +22,7 @@
 }
 
 .subheadline {
-  color: var(--gray-7);
-  font-size: var(--font-size-3);
+  color: var(--text-fg-3);
+  font-size: var(--font-size-fluid-1);
   font-weight: var(--font-weight-3);
 }

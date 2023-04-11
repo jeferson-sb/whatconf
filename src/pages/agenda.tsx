@@ -25,8 +25,8 @@ const Agenda: NextPage = () => {
         ) : agendaItems.data?.length ? (
           <>
             <h3 className={styles.upcoming}>Upcoming conferences</h3>
-            {agendaItems.data.map((item) => (
-              <li key={item.id}>
+            {agendaItems.data.map((item, index) => (
+              <li key={item.id} style={{ '--order': index }}>
                 <AgendaCard event={item.event} />
               </li>
             ))}

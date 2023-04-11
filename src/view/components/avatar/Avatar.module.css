@@ -4,12 +4,13 @@
   gap: var(--size-2);
   padding-inline: var(--size-4);
   border-radius: var(--radius-4);
-  background: var(--gray-3);
-  border: 0.15rem solid var(--gray-4);
+  background: var(--base-1);
+  border: 0.1rem solid var(--base-2);
 }
 
 .name {
-  color: var(--gray-7);
+  color: var(--text-fg-3);
+  font-weight: var(--font-weight-700);
 }
 
 .circle {

@@ -1,9 +1,25 @@
 .card {
   border-radius: var(--radius-3);
-  border: var(--border-size-1) solid var(--gray-1);
+  border: var(--border-size-1) solid var(--base-1);
 
   display: flex;
   position: relative;
+  animation: dropIn 2s ease-out normal forwards;
+  animation-delay: calc(var(--order) * 200ms);
+  opacity: 0;
+  transform: translateY(-20%);
+}
+
+@keyframes dropIn {
+  20% {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+  50%,
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .card::before {
@@ -11,7 +27,7 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background-color: var(--orange-2);
+  background-color: var(--accent);
   position: absolute;
   left: -46px;
 }
@@ -23,7 +39,7 @@
   border-top-left-radius: var(--radius-3);
   border-bottom-left-radius: var(--radius-3);
 
-  background-color: var(--orange-2);
+  background-color: var(--accent);
   flex-basis: 15%;
 }
 
@@ -42,12 +58,18 @@
   flex-basis: 85%;
 }
 
+@media (prefers-color-scheme: dark) {
+  .details {
+    --_details-text: var(--text-fg-5);
+  }
+}
+
 .details h3 {
   font-weight: var(--font-weight-6);
 }
 
 .details p {
-  color: var(--gray-7);
+  color: var(--_details-text, --text-fg-2);
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -58,7 +80,7 @@
   all: unset;
   width: 100%;
   height: 2px;
-  background-color: var(--orange-3);
+  background-color: var(--accent-2);
   outline: 0;
   margin: 0;
 }

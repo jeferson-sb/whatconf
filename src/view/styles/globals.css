@@ -1,1 +1,63 @@
-@import "https://unpkg.com/open-props";
+@import 'https://unpkg.com/open-props';
+
+@layer theme;
+
+@layer theme {
+  :root {
+    /* Light theme (default) */
+    --accent: var(--orange-1);
+    --accent-2: var(--orange-3);
+    --bg: var(--white);
+    --card-shadow-color: 0deg 0% 0% / 3%;
+
+    --text-fg-1: var(--gray-8);
+    --text-fg-2: var(--gray-7);
+    --text-fg-3: var(--gray-6);
+    --text-fg-4: var(--gray-5);
+    --text-fg-5: var(--gray-4);
+    --text-fg-6: var(--gray-3);
+
+    --base-1: var(--gray-0);
+    --base-2: var(--gray-1);
+    --base-3: var(--gray-2);
+    --base-4: var(--gray-3);
+    --base-5: var(--gray-4);
+    --base-6: var(--gray-5);
+    --base-7: var(--gray-6);
+    --base-8: var(--gray-7);
+    --base-9: var(--gray-8);
+  }
+}
+
+html {
+  background-color: var(--bg);
+  color: var(--text-fg-1);
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Dark theme */
+  :root {
+    --accent: var(--violet-9);
+    --accent-2: var(--violet-10);
+    --bg: var(--gray-10);
+    --card-shadow-color: 0deg 0% 5% / 20%;
+    --action: var(--gray-10);
+
+    --text-fg-1: var(--gray-1);
+    --text-fg-2: var(--gray-2);
+    --text-fg-3: var(--gray-3);
+    --text-fg-4: var(--gray-4);
+    --text-fg-5: var(--gray-5);
+    --text-fg-6: var(--gray-6);
+
+    --base-1: var(--gray-9);
+    --base-2: var(--gray-8);
+    --base-3: var(--gray-7);
+    --base-4: var(--gray-6);
+    --base-5: var(--gray-5);
+    --base-6: var(--gray-4);
+    --base-7: var(--gray-3);
+    --base-8: var(--gray-2);
+    --base-9: var(--gray-1);
+  }
+}

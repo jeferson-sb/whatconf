@@ -11,8 +11,8 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-conditional-3);
-  border: var(--border-size-1) solid var(--gray-2);
-  background-color: var(--gray-2);
+  border: var(--border-size-1) solid var(--base-3);
+  background-color: var(--base-1);
   margin-block: var(--size-6);
   padding: var(--size-1);
 }
@@ -35,7 +35,7 @@
 
   position: absolute;
   left: 2px;
-  background-color: var(--gray-4);
+  background-color: var(--base-3);
   width: 90px;
   height: 90%;
   border-radius: var(--radius-3);
@@ -47,7 +47,7 @@
 }
 
 .indicator--left {
-  --translateActiveX: 0%; 
+  --translateActiveX: 0%;
 }
 
 .indicator--right {

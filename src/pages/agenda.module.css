@@ -16,18 +16,26 @@
   position: absolute;
   background: linear-gradient(
     to bottom,
-    var(--orange-2) 50%,
-    var(--orange-2) 30%,
+    var(--accent) 50%,
+    var(--accent) 30%,
     hsla(0, 0%, 100%, 0.5)
   );
   border-radius: var(--radius-2);
+  opacity: 0;
+  animation: grow-line 4s 1s ease-in forwards;
 }
 
 .upcoming {
   font-size: var(--font-size-0);
   font-weight: var(--font-weight-5);
-  color: var(--gray-7);
+  color: var(--text-fg-3);
   letter-spacing: 2px;
   margin-block-end: var(--size-3);
   text-transform: uppercase;
+}
+
+@keyframes grow-line {
+  100% {
+    opacity: 1;
+  }
 }
