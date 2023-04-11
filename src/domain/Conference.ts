@@ -9,6 +9,7 @@ namespace Conference {
     endDate: Date
     categoryId: string
     organizerId: string
+    category?: string
   }
 
   type Conference = { id: string } & EventData

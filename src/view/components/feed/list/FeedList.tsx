@@ -19,6 +19,7 @@ const FeedList = ({ events, onSubscribe }: FeedListProps) => (
         description={event.description}
         link={event.link}
         location={event.location}
+        category={event.category}
         onSubscribe={() => onSubscribe(event)}
       />
     ))}

@@ -16,6 +16,7 @@ const FeedCard = ({
   endDate,
   link,
   location,
+  category,
   onSubscribe,
 }: FeedCardProps) => {
   const formattedStartDate = formattedDate(startDate)
@@ -25,6 +26,7 @@ const FeedCard = ({
   return (
     <div className={styles.card}>
       <div className={styles.body}>
+        <span className={styles.category}>{category}</span>
         <p id={`card-title-${id}`} className={styles.title}>
           {title}
         </p>

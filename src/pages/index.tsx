@@ -1,6 +1,6 @@
 import { type NextPage } from 'next'
 import Link from 'next/link'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { getToken, getMessaging } from 'firebase/messaging'
 import firebase from 'firebase/compat/app'
 import { signIn, signOut, useSession } from 'next-auth/react'
@@ -21,8 +21,19 @@ import { vapidKey } from '@/lib/firebase'
 import styles from './index.module.css'
 
 const Home: NextPage = () => {
-  const events = trpc.conference.all.useQuery()
+  const eventsQuery = trpc.conference.all.useQuery()
+  const categories = trpc.category.all.useQuery()
   const reminder = trpc.reminder.create.useMutation()
+
+  const events = useMemo(
+    () =>
+      eventsQuery?.data?.map((event) => ({
+        ...event,
+        category: categories?.data?.find((ctg) => ctg.id === event.categoryId)
+          ?.name,
+      })),
+    [categories]
+  )
 
   const { data: sessionData } = useSession()
   const [isSubscribeDialogOpen, setSubscribeDialog] = useState(false)
@@ -109,7 +120,7 @@ const Home: NextPage = () => {
         />
 
         <div className={styles.controls}>
-          <Button as={Link} href="/create">
+          <Button as={Link} href="/create" colorScheme="gray">
             <Plus /> <span>Submit a conf</span>
           </Button>
           {sessionData ? (
@@ -126,10 +137,10 @@ const Home: NextPage = () => {
           )}
         </div>
 
-        {events.isLoading ? (
+        {eventsQuery.isLoading ? (
           <p>Loading...</p>
-        ) : events?.data?.length ? (
-          <FeedList events={events.data} onSubscribe={handleSubscribe} />
+        ) : eventsQuery?.data?.length ? (
+          <FeedList events={events} onSubscribe={handleSubscribe} />
         ) : null}
       </section>
     </Container>
