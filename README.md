@@ -4,7 +4,7 @@
 
 ## What is this project?
 
-The idea originally came from a personal frustration of missing some tech conferences I like by not attending at a time and/or just forgetting which days it starts and ends. As I'm not a big fan of Google Calendar I would like to this more organized in one place to avoid other meetings and stuff in my agenda.
+The idea originally came from a personal frustration of missing some tech conferences I like by not attending at a time and/or just forgetting which days it starts and ends. As I'm not a big fan of Google Calendar I would like something more organized in one place to avoid other meetings and stuff in my agenda.
 
 WhatConf have a feed of conferences that users can check its dates, location, link with a brief description. Authenticated users can subscribe to a particular conference to their agenda and receive push notifications when the day before conference starts!
 
@@ -32,7 +32,7 @@ Fill the environment variables with **your** credentials. For more info see:
 - Check next-auth [social providers documentation](https://next-auth.js.org/providers)
 - Check the setup of a new project in [Firebase](https://firebase.google.com/docs/web/setup)
 
-Start a postgres database or user docker:
+Start a postgres database or use docker:
 
 ```
 docker-compose up
