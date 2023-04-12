@@ -1,29 +1,61 @@
 # WhatConf
 
-![homepage](https://user-images.githubusercontent.com/30840709/211813411-cb694da2-4d57-4472-af4d-38ba3b9831e4.png)
+![homepage](.github/demo.png)
+
+## What is this project?
+
+The idea originally came from a personal frustration of missing some tech conferences I like by not attending at a time and/or just forgetting which days it starts and ends. As I'm not a big fan of Google Calendar I would like to this more organized in one place to avoid other meetings and stuff in my agenda.
+
+WhatConf have a feed of conferences that users can check its dates, location, link with a brief description. Authenticated users can subscribe to a particular conference to their agenda and receive push notifications when the day before conference starts!
+
+## Which tools we use
+
+- [Next 13](https://nextjs.org/) - Framework
+- [Next-Auth.js](https://next-auth.js.org) - Authentication and Authorization
+- [Prisma](https://prisma.io) - Database schemas
+- [tRPC](https://trpc.io) - Backend communication
+- [React-Query](https://tanstack.com/query/v3/) - Data-fetching
+- [Open-props](https://open-props.style/) - Styling solution
 
 This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
 
-## What's next? How do I make an app with this?
+## Quick start
 
-We try to keep this project as simple as possible, so you can start with the most basic configuration and then move on to more advanced configuration.
+> This projects uses [pnpm](https://pnpm.io/) you can installation guides in their docs.
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+```
+cp .env.example .env
+```
 
-- [Next-Auth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [TailwindCSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+Fill the environment variables with **your** credentials. For more info see:
 
-We also [roll our own docs](https://beta.create.t3.gg) with some summary information and links to the respective documentation.
+- Check next-auth [social providers documentation](https://next-auth.js.org/providers)
+- Check the setup of a new project in [Firebase](https://firebase.google.com/docs/web/setup)
 
-Also checkout these awesome tutorials on `create-t3-app`.
+Start a postgres database or user docker:
 
-- [Build a Blog With the T3 Stack - tRPC, TypeScript, Next.js, Prisma & Zod](https://www.youtube.com/watch?v=syEWlxVFUrY)
-- [Build a Live Chat Application with the T3 Stack - TypeScript, Tailwind, tRPC](https://www.youtube.com/watch?v=dXRRY37MPuk)
-- [Build a full stack app with create-t3-app](https://www.nexxel.dev/blog/ct3a-guestbook)
-- [A first look at create-t3-app](https://dev.to/ajcwebdev/a-first-look-at-create-t3-app-1i8f)
+```
+docker-compose up
+```
 
-## How do I deploy this?
+Run database migration and seeds
 
-Follow our deployment guides for [Vercel](https://beta.create.t3.gg/en/deployment/vercel) and [Docker](https://beta.create.t3.gg/en/deployment/docker) for more information.
+```
+pnpm db:setup
+```
+
+Then finally start the server
+
+```
+pnpm dev
+```
+
+## Tests
+
+```
+pnpm test
+```
+
+## License
+
+This project is licensed under the [Apache License](./LICENSE)
