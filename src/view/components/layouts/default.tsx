@@ -1,15 +1,27 @@
-import Head from "next/head";
-import { Container } from "../container/Container";
+import Head from 'next/head'
+import { Nunito } from 'next/font/google'
 
-import { Header } from '../header/Header';
+import { Container } from '../container/Container'
+
+import { Header } from '../header/Header'
 import { Navbar } from '../navbar/Navbar'
+
+const font = Nunito({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--next-ff',
+})
 
 export default function Layout({ children }) {
   return (
     <>
       <Head>
         <title>WhatConf 👩‍💻👨‍💻 Never miss a tech conf again.</title>
-        <meta name="description" content="WhatConf is a webapp to remind you of awesome developer talks happening across the globe." />
+        <meta
+          name="description"
+          content="WhatConf is a webapp to remind you of awesome developer talks happening across the globe."
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -17,9 +29,7 @@ export default function Layout({ children }) {
         <Header />
         <Navbar />
       </Container>
-      <main>
-        {children}
-      </main>
+      <main className={font.className}>{children}</main>
     </>
   )
 }
