@@ -25,10 +25,29 @@
 
 .button-outline {
   --_bg-color: transparent;
-  --_text-color: var(--gray-10);
-  --_bg-hover-color: var(--gray-5);
+  --_text-color: var(--base-10);
+  --_bg-hover-color: var(--base-5);
 
   font-weight: 700;
+}
+
+.button-cutted {
+  --outer-color: hsla(0, 0%, 0%, 0);
+  --inner-color: hsl(0, 0%, 0%);
+  --radius: 24px;
+
+  mask-image: radial-gradient(
+    ellipse 50px 50px at -18px center,
+    var(--outer-color) var(--radius),
+    var(--inner-color) 0
+  );
+  mask-composite: subtract;
+}
+
+@media (prefers-color-scheme: dark) {
+  .button {
+    --_border-color: var(--base-2);
+  }
 }
 
 .button::before {

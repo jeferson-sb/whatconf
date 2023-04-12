@@ -126,7 +126,7 @@ const Home: NextPage = () => {
           {sessionData ? (
             <div className={styles.menu}>
               <Avatar user={sessionData?.user} />
-              <Button type="button" onClick={handleLogout}>
+              <Button type="button" variant="cutted" onClick={handleLogout}>
                 Logout
               </Button>
             </div>

@@ -8,7 +8,7 @@ type ButtonProps<T extends React.ElementType> = {
   as?: T
   href?: string
   colorScheme?: string
-  variant?: 'outline' | 'ghost' | 'solid'
+  variant?: 'outline' | 'ghost' | 'solid' | 'cutted'
 }
 
 const Button = <T extends React.ElementType = 'button'>(
@@ -26,6 +26,7 @@ const Button = <T extends React.ElementType = 'button'>(
   const classes = cx({
     [styles.button]: true,
     [styles['button-outline']]: variant === 'outline',
+    [styles['button-cutted']]: variant === 'cutted',
   })
 
   const colorSchemes = {
