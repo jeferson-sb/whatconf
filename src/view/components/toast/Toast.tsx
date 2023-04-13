@@ -43,7 +43,7 @@ const Toast = ({
   })
 
   return (
-    <RNToast.Provider swipeDirection={swipe} duration={1000000}>
+    <RNToast.Provider swipeDirection={swipe}>
       <RNToast.Root
         className={styles.root}
         style={colors[type]}

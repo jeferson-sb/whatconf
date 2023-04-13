@@ -29,7 +29,13 @@
   border-radius: 50%;
   background-color: var(--accent);
   position: absolute;
-  left: -46px;
+  left: -6.5%;
+}
+
+@media screen and (max-width: 40em) {
+  .card::before {
+    display: none;
+  }
 }
 
 .dates {

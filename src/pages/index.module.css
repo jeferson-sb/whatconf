@@ -7,6 +7,8 @@
 
 .controls {
   display: inline-flex;
+  flex-wrap: wrap;
+  gap: 2rem;
   padding: 1rem 0;
   align-items: center;
   justify-content: space-between;
