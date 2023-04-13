@@ -12,10 +12,11 @@ WhatConf have a feed of conferences that users can check its dates, location, li
 
 - [Next 13](https://nextjs.org/) - Framework
 - [Next-Auth.js](https://next-auth.js.org) - Authentication and Authorization
-- [Prisma](https://prisma.io) - Database schemas
-- [tRPC](https://trpc.io) - Backend communication
+- [Prisma](https://prisma.io) - Database
+- [tRPC](https://trpc.io) - Backend
 - [React-Query](https://tanstack.com/query/v3/) - Data-fetching
 - [Open-props](https://open-props.style/) - Styling solution
+- [Vitest](https://vitest.dev/) - Testing
 
 This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
 
