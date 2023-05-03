@@ -13,7 +13,7 @@
   color: var(--_text-color);
   background: var(--_bg-color);
   border: var(--border-size-1) solid var(--_border-color);
-  border-radius: var(--radius-conditional-2);
+  border-radius: var(--radius-2);
 
   transition: background 400ms ease-out;
   padding: 0.5rem 1.5rem;

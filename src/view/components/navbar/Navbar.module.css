@@ -10,7 +10,7 @@
   gap: var(--size-3);
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-conditional-3);
+  border-radius: var(--radius-3);
   border: var(--border-size-1) solid var(--base-3);
   background-color: var(--base-1);
   margin-block: var(--size-6);
