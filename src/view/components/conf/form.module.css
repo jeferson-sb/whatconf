@@ -16,6 +16,7 @@
   border: 2px solid var(--border-color);
   border-radius: var(--radius-2);
   background: inherit;
+  color: var(--text-fg-1);
 }
 
 .input[aria-invalid='true'] {
@@ -32,6 +33,7 @@
   border-radius: var(--radius-2);
   background: inherit;
   resize: vertical;
+  color: var(--text-fg-1);
 }
 
 .textarea:focus:not(:focus-visible),
@@ -66,13 +68,18 @@
   border: 2px solid var(--gray-5);
   border-radius: var(--radius-2);
   background: inherit;
+  color: var(--text-fg-1);
+}
+
+.select option {
+  color: var(--text-fg-1);
 }
 
 .checkbox {
   display: block;
   position: relative;
   cursor: pointer;
-  color: var(--gray-8);
+  color: var(--text-fg-2);
 }
 
 .checkboxInput {
@@ -111,7 +118,7 @@
   display: block;
   font-size: var(--font-size-1);
   font-style: italic;
-  color: var(--color, var(--gray-11));
+  color: var(--text-fg-1);
 }
 
 .messageError {

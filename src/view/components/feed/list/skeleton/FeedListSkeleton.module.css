@@ -1,0 +1,49 @@
+.list {
+  display: flex;
+  flex-flow: column wrap;
+  gap: var(--size-4);
+}
+
+.card {
+  --shadow-color: 0deg 0% 0% / 7%;
+
+  display: flex;
+  flex-flow: column wrap;
+  border-radius: var(--radius-conditional-2);
+  box-shadow: 0 0 0 1px hsl(var(--shadow-color)),
+    0 2px 4px hsl(var(--shadow-color)), 0 12px 24px hsl(var(--shadow-color));
+  flex-basis: 229px;
+  background-color: var(--base-1);
+}
+
+.body {
+  padding-inline: var(--size-5);
+  padding-block: var(--size-4);
+}
+
+.title {
+  display: inline-block;
+  height: var(--size-4);
+  width: 70%;
+  background-color: var(--base-3);
+  border-radius: var(--radius-4);
+}
+
+.category {
+  display: inline-block;
+  height: var(--size-4);
+  width: 40%;
+  background-color: var(--base-2);
+  border-radius: var(--radius-4);
+  margin-block-end: var(--size-1);
+}
+
+.animationPulse {
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
