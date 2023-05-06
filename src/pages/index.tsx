@@ -9,7 +9,7 @@ import { trpc } from '../utils/trpc'
 import { type Conference } from '../domain/Conference'
 import { Button } from '@/view/components/base/button/Button'
 import { Container } from '@/view/components/container/Container'
-import { FeedList } from '@/view/components/feed'
+import { FeedList, FeedListSkeleton } from '@/view/components/feed'
 import { Plus } from '@/view/components/icons'
 import { Avatar } from '@/view/components/avatar'
 import { AlertDialog } from '@/view/components/base/dialog'
@@ -27,11 +27,13 @@ const Home: NextPage = () => {
 
   const events = useMemo(
     () =>
-      eventsQuery?.data?.map((event) => ({
-        ...event,
-        category: categories?.data?.find((ctg) => ctg.id === event.categoryId)
-          ?.name,
-      })),
+      eventsQuery?.data
+        ?.map((event) => ({
+          ...event,
+          category: categories?.data?.find((ctg) => ctg.id === event.categoryId)
+            ?.name,
+        }))
+        .sort((a, b) => (a.startDate > b.startDate ? 1 : -1)),
     [categories]
   )
 
@@ -138,7 +140,7 @@ const Home: NextPage = () => {
         </div>
 
         {eventsQuery.isLoading ? (
-          <p>Loading...</p>
+          <FeedListSkeleton />
         ) : eventsQuery?.data?.length ? (
           <FeedList events={events} onSubscribe={handleSubscribe} />
         ) : null}
