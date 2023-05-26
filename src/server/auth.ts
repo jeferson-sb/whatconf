@@ -31,6 +31,7 @@ declare module 'next-auth' {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
+  debug: true,
   callbacks: {
     session({ session, user }) {
       if (session.user) {
