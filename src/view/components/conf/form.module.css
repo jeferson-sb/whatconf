@@ -72,7 +72,7 @@
 }
 
 .select option {
-  color: var(--text-fg-1);
+  color: var(--gray-8);
 }
 
 .checkbox {
