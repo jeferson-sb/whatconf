@@ -4,9 +4,9 @@ import { useCallback } from 'react'
 
 import styles from './create.module.css'
 
-import { Container } from '../../view/components/container/Container'
-import { trpc } from '../../utils/trpc'
-import { CreateForm, type CreateFormState } from '../../view/components/conf'
+import { trpc } from '@/utils/trpc'
+import { Container } from '@/view/components/container/Container'
+import { CreateForm, type CreateFormState } from '@/view/components/conf'
 
 const Create: NextPage = () => {
   const router = useRouter()

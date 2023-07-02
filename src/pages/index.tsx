@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { getToken, getMessaging } from 'firebase/messaging'
 import firebase from 'firebase/compat/app'
-import { signIn, signOut, useSession } from 'next-auth/react'
 
 import { trpc } from '../utils/trpc'
 import { type Conference } from '../domain/Conference'
@@ -19,15 +18,19 @@ import { isProd } from '@/lib/detectEnv'
 import { vapidKey } from '@/lib/firebase'
 
 import styles from './index.module.css'
+import { useAuth } from '@/hook/useAuth'
 
 const Home: NextPage = () => {
   const eventsQuery = trpc.conference.all.useQuery()
   const categories = trpc.category.all.useQuery()
   const reminder = trpc.reminder.create.useMutation()
 
+  const { isAuthenticated, session, signIn, signOut } = useAuth()
+
   const events = useMemo(
     () =>
       eventsQuery?.data
+        ?.filter((event) => event.endDate > new Date())
         ?.map((event) => ({
           ...event,
           category: categories?.data?.find((ctg) => ctg.id === event.categoryId)
@@ -37,7 +40,6 @@ const Home: NextPage = () => {
     [categories]
   )
 
-  const { data: sessionData } = useSession()
   const [isSubscribeDialogOpen, setSubscribeDialog] = useState(false)
   const [isToastOpen, setToastOpen] = useState(false)
 
@@ -62,9 +64,9 @@ const Home: NextPage = () => {
 
   const handleSubscribe = useCallback(async (event: Conference.Type) => {
     try {
-      const currentUser = sessionData?.user
+      const currentUser = session?.user
 
-      if (!currentUser) {
+      if (!currentUser || !isAuthenticated) {
         return setSubscribeDialog(true)
       }
 
@@ -125,9 +127,9 @@ const Home: NextPage = () => {
           <Button as={Link} href="/create" colorScheme="gray">
             <Plus /> <span>Submit a conf</span>
           </Button>
-          {sessionData ? (
+          {isAuthenticated ? (
             <div className={styles.menu}>
-              <Avatar user={sessionData?.user} />
+              <Avatar user={session?.user} />
               <Button type="button" variant="cutted" onClick={handleLogout}>
                 Logout
               </Button>

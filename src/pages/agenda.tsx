@@ -1,18 +1,21 @@
 import { useMemo } from 'react'
 import type { NextPage } from 'next'
-import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 
-import { trpc } from '@/utils/trpc'
-import { Container } from '@/view/components/container/Container'
-
 import styles from './agenda.module.css'
+
+import { trpc } from '@/utils/trpc'
+import { useAuth } from '@/hook/useAuth'
+
+import { Container } from '@/view/components/container/Container'
 import { AgendaCard } from '@/view/components/agenda'
 
 const Agenda: NextPage = () => {
-  const { data: sessionData } = useSession()
-  const currentUser = sessionData?.user
-  const agendaItems = trpc.reminder.agenda.useQuery(currentUser?.id)
+  const { isAuthenticated, isUnauthenticated, session } = useAuth()
+  const currentUser = session?.user
+  const agendaItems = trpc.reminder.agenda.useQuery(currentUser?.id, {
+    enabled: isAuthenticated,
+  })
 
   const sorted = useMemo(
     () =>
@@ -26,7 +29,7 @@ const Agenda: NextPage = () => {
     <Container>
       <h2>Your current agenda:</h2>
       <ul className={styles.list}>
-        {!currentUser ? (
+        {isUnauthenticated ? (
           <p>
             You are not authenticated yet.{' '}
             <Link href="/api/auth/signin">Click here to log in!</Link>

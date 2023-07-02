@@ -1,8 +1,9 @@
 import dayjs from 'dayjs'
 
-import type { Conference } from '../../../../domain/Conference'
-import { shortDateFormatted } from '../../../formatters'
+import type { Conference } from '@/domain/Conference'
 import styles from './AgendaCard.module.css'
+
+import { shortDateFormatted } from '../../../formatters'
 
 type AgendaCardProps = {
   event: Omit<Conference.Type, 'organizerId'>
