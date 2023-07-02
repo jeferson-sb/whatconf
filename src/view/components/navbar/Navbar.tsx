@@ -6,12 +6,13 @@ import styles from './Navbar.module.css'
 
 const Navbar = () => {
   const router = useRouter()
-  const isActive = (path: string) => path === router.asPath
-  const indicatorStyle = cx({
-    [styles.indicator]: true,
-    [styles['indicator--left']]: isActive('/'),
-    [styles['indicator--right']]: isActive('/agenda'),
-  })
+
+  const indicatorStyles = {
+    '/': { '--translateActiveX': '0%' },
+    '/year': { '--translateActiveX': '100%' },
+    '/agenda': { '--translateActiveX': 'calc(200% + 16px)' },
+  }
+  const path = router.asPath
 
   return (
     <header className={styles.header}>
@@ -23,11 +24,19 @@ const Navbar = () => {
             </Link>
           </li>
           <li className={styles.item}>
+            <Link className={styles.link} href="/year">
+              This year
+            </Link>
+          </li>
+          <li className={styles.item}>
             <Link className={styles.link} href="/agenda">
               Agenda
             </Link>
           </li>
-          <span className={indicatorStyle}></span>
+          <span
+            className={styles.indicator}
+            style={indicatorStyles[path]}
+          ></span>
         </ul>
       </nav>
     </header>
