@@ -9,6 +9,7 @@ type ButtonProps<T extends React.ElementType> = {
   href?: string
   colorScheme?: string
   variant?: 'outline' | 'ghost' | 'solid' | 'cutted'
+  type?: 'submit' | 'button'
 }
 
 const Button = <T extends React.ElementType = 'button'>(
@@ -24,9 +25,9 @@ const Button = <T extends React.ElementType = 'button'>(
   } = props
   const Component = as
   const classes = cx({
-    [styles.button]: true,
-    [styles['button-outline']]: variant === 'outline',
-    [styles['button-cutted']]: variant === 'cutted',
+    [styles.button as string]: true,
+    [styles['button-outline'] as string]: variant === 'outline',
+    [styles['button-cutted'] as string]: variant === 'cutted',
   })
 
   const colorSchemes = {

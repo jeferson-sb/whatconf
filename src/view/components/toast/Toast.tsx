@@ -38,8 +38,8 @@ const Toast = ({
   children,
 }: ToastProps) => {
   const viewportClass = cx({
-    [styles.viewport]: true,
-    [styles[`viewport--${placement}`]]: true,
+    [styles.viewport as string]: true,
+    [styles[`viewport--${placement}`] as string]: true,
   })
 
   return (
