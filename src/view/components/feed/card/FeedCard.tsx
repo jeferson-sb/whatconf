@@ -43,16 +43,6 @@ const FeedCard = ({
         <p>{description}</p>
       </div>
       <div className={styles.actions}>
-        <button
-          id={`button-${id}`}
-          type="button"
-          aria-labelledby={`button-${id} card-title-${id}`}
-          className={styles.button}
-          onClick={onSubscribe}
-        >
-          <Bell width={20} height={20} />
-          Subscribe
-        </button>
         <a
           href={link}
           className={styles.link}
