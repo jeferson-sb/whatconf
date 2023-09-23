@@ -1,17 +1,17 @@
 import * as RNToast from '@radix-ui/react-toast'
-import { useState } from 'react'
 import cx from 'clsx'
 
 import styles from './Toast.module.css'
 
-type ToastProps = {
-  open: boolean
-  onOpenChange: (open: boolean) => void
+type ToastShape = {
   type: 'warn' | 'success' | 'error'
   title: string
   description?: string
-  swipe?: 'down' | 'up' | 'right' | 'left'
   placement?: 'top-left' | 'top-right' | 'bottom-right' | 'bottom-left'
+}
+
+type ToastProps = ToastShape & {
+  onOpenChange?: (open: boolean) => void
   children?: React.ReactNode
 }
 
@@ -28,14 +28,12 @@ const colors = {
 }
 
 const Toast = ({
-  open,
-  onOpenChange,
-  swipe = 'down',
   placement = 'bottom-right',
   title,
   description,
   type,
   children,
+  onOpenChange,
 }: ToastProps) => {
   const viewportClass = cx({
     [styles.viewport as string]: true,
@@ -43,11 +41,11 @@ const Toast = ({
   })
 
   return (
-    <RNToast.Provider swipeDirection={swipe}>
+    <>
       <RNToast.Root
         className={styles.root}
         style={colors[type]}
-        open={open}
+        defaultOpen
         onOpenChange={onOpenChange}
       >
         <RNToast.Title className={styles.title}>{title}</RNToast.Title>
@@ -57,8 +55,9 @@ const Toast = ({
         {children}
       </RNToast.Root>
       <RNToast.Viewport className={viewportClass} />
-    </RNToast.Provider>
+    </>
   )
 }
 
 export { Toast }
+export type { ToastShape }

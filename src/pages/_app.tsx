@@ -7,6 +7,7 @@ import '@/view/styles/reset.css'
 import '@/view/styles/globals.css'
 
 import Layout from '../view/components/layouts/default'
+import { ToastProvider } from '@/view/components/toast/ToastProvider'
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -14,9 +15,11 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <ToastProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ToastProvider>
     </SessionProvider>
   )
 }
