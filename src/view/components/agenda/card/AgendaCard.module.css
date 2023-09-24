@@ -22,6 +22,10 @@
   }
 }
 
+.card-past {
+  filter: saturate(0.1);
+}
+
 .card::before {
   content: '';
   width: 24px;
@@ -72,6 +76,12 @@
 
 .details h3 {
   font-weight: var(--font-weight-6);
+}
+
+.details .header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
 }
 
 .details p {
@@ -146,4 +156,11 @@
     transform: translate(-50%, -50%) scale(2.2);
     opacity: 0;
   }
+}
+
+.ended {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: var(--font-size-0);
+  color: var(--base-7);
 }

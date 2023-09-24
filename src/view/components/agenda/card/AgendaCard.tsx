@@ -1,24 +1,34 @@
+import { useMemo } from 'react'
 import dayjs from 'dayjs'
+import cx from 'clsx'
 
 import type { Conference } from '@/domain/Conference'
 import styles from './AgendaCard.module.css'
 
-import { shortDateFormatted } from '../../../formatters'
+import { shortDateFormatted } from '@/view/formatters'
 
 type AgendaCardProps = {
   event: Omit<Conference.Type, 'organizerId'>
 }
 
 const AgendaCard = ({ event }: AgendaCardProps) => {
-  const isLive = (startDate: Date) => {
-    const today = dayjs()
-    const diff = today.diff(startDate, 'day') - 1
+  const today = dayjs()
+
+  const isLive = useMemo(() => {
+    const diff = today.diff(event.startDate, 'day') - 1
 
     return diff === 0
-  }
+  }, [])
+
+  const isPast = dayjs().isAfter(event.endDate)
+
+  const classes = cx({
+    [styles.card as string]: true,
+    [styles['card-past'] as string]: isPast,
+  })
 
   return (
-    <div className={styles.card}>
+    <div className={classes}>
       <div className={styles.dates}>
         <time dateTime={event.startDate.toISOString()}>
           {shortDateFormatted(event.startDate)}
@@ -29,10 +39,13 @@ const AgendaCard = ({ event }: AgendaCardProps) => {
         </time>
       </div>
       <div className={styles.details}>
-        <h3>{event.title}</h3>
+        <div className={styles.header}>
+          <h3>{event.title}</h3>
+          {isPast && <span className={styles.ended}>Ended</span>}
+        </div>
         <p>{event.description}</p>
       </div>
-      {isLive(event.startDate) && (
+      {isLive && (
         <div className={styles.live}>
           <span>Live</span>
           <span className={styles.dot}></span>
