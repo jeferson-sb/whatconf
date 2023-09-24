@@ -12,13 +12,13 @@ import { FeedList, FeedListSkeleton } from '@/view/components/feed'
 import { Plus } from '@/view/components/icons'
 import { Avatar } from '@/view/components/avatar'
 import { AlertDialog } from '@/view/components/base/dialog'
-import { Toast } from '@/view/components/toast/Toast'
 
-import { isProd } from '@/lib/detectEnv'
 import { vapidKey } from '@/lib/firebase'
 
 import styles from './index.module.css'
 import { useAuth } from '@/hook/useAuth'
+import { useToast } from '@/hook/useToast'
+import { isProd } from '@/lib/detectEnv'
 
 const Home: NextPage = () => {
   const eventsQuery = trpc.conference.all.useQuery()
@@ -26,6 +26,7 @@ const Home: NextPage = () => {
   const reminder = trpc.reminder.create.useMutation()
 
   const { isAuthenticated, session, signIn, signOut } = useAuth()
+  const { showToast } = useToast()
 
   const events = useMemo(
     () =>
@@ -41,7 +42,6 @@ const Home: NextPage = () => {
   )
 
   const [isSubscribeDialogOpen, setSubscribeDialog] = useState(false)
-  const [isToastOpen, setToastOpen] = useState(false)
 
   const handleSignIn = () => signIn()
 
@@ -74,19 +74,24 @@ const Home: NextPage = () => {
 
       reminder.mutate({ userId, eventId: event.id })
 
-      if (isProd()) {
-        const fcmToken = window.localStorage.getItem('@whatconf/fcm') ?? ''
-        const response = await fetch('/api/subscribe', {
-          body: JSON.stringify({ fcmToken, event }),
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-        const data = await response.json()
-      }
+      // if (isProd()) {
+      //   const fcmToken = window.localStorage.getItem('@whatconf/fcm') ?? ''
+      //   const response = await fetch('/api/subscribe', {
+      //     body: JSON.stringify({ fcmToken, event }),
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //   })
+      //   const data = await response.json()
+      // }
 
-      setToastOpen(true)
+      showToast({
+        type: 'success',
+        title: 'Subscribed!',
+        description:
+          "You're now subscribed and will be notified a day before the event starts!",
+      })
     } catch (error) {
       if (error instanceof Error) {
         throw new Error('Failed to subscribe user to conference', error)
@@ -114,15 +119,6 @@ const Home: NextPage = () => {
           </div>
         </AlertDialog>
 
-        <Toast
-          type="success"
-          open={isToastOpen}
-          swipe="up"
-          onOpenChange={setToastOpen}
-          title="Subscribed!"
-          description="You're now subscribed and will be notified a day before the event starts!"
-        />
-
         <div className={styles.controls}>
           <Button as={Link} href="/create" colorScheme="gray">
             <Plus /> <span>Submit a conf</span>
@@ -143,9 +139,14 @@ const Home: NextPage = () => {
 
         {eventsQuery.isLoading ? (
           <FeedListSkeleton />
-        ) : eventsQuery?.data?.length ? (
+        ) : events && events?.length > 0 ? (
           <FeedList events={events} onSubscribe={handleSubscribe} />
-        ) : null}
+        ) : (
+          <p>
+            No upcoming events has been registered from this date, check the
+            conferences from <Link href="/year">this year.</Link>
+          </p>
+        )}
       </section>
     </Container>
   )

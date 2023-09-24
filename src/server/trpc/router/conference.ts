@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import { publicProcedure, router } from '../trpc'
 import { z } from 'zod'
 
@@ -13,9 +14,18 @@ export const confValidationSchema = z.object({
   categoryId: z.string(),
 })
 
+const currentYear = dayjs().year()
+const startOfYear = new Date(currentYear, 0, 1)
+const endOfYear = new Date(currentYear, 11, 31)
+
 export const confRouter = router({
   all: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.event.findMany()
+  }),
+  yearly: publicProcedure.query(({ ctx }) => {
+    return ctx.prisma.event.findMany({
+      where: { endDate: { gte: startOfYear, lte: endOfYear } },
+    })
   }),
   getById: publicProcedure.input(z.string()).query(({ input: id, ctx }) => {
     return ctx.prisma.event.findUnique({ where: { id } })

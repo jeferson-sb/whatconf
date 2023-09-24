@@ -7,6 +7,7 @@ import styles from './year.module.css'
 import { isProd } from '@/lib/detectEnv'
 import { trpc } from '@/utils/trpc'
 import { useAuth } from '@/hook/useAuth'
+import { useToast } from '@/hook/useToast'
 import { type Conference } from '@/domain/Conference'
 
 import { Container } from '@/view/components/container/Container'
@@ -15,22 +16,20 @@ import { FeedList, FeedListSkeleton } from '@/view/components/feed'
 import { Button } from '@/view/components/base/button/Button'
 
 import { AlertDialog } from '@/view/components/base/dialog'
-import { Toast } from '@/view/components/toast/Toast'
 import { Plus } from '@/view/components/icons'
 
 const FeedYear: NextPage = () => {
-  const eventsQuery = trpc.conference.all.useQuery()
+  const eventsQuery = trpc.conference.yearly.useQuery()
   const categories = trpc.category.all.useQuery()
   const reminder = trpc.reminder.create.useMutation()
+  const api = trpc.useContext()
 
   const { isAuthenticated, session, signIn, signOut } = useAuth()
+  const { showToast } = useToast()
 
   const events = useMemo(
     () =>
       eventsQuery?.data
-        ?.filter(
-          (event) => event.endDate.getFullYear() === new Date().getFullYear()
-        )
         ?.map((event) => ({
           ...event,
           category: categories?.data?.find((ctg) => ctg.id === event.categoryId)
@@ -41,7 +40,6 @@ const FeedYear: NextPage = () => {
   )
 
   const [isSubscribeDialogOpen, setSubscribeDialog] = useState(false)
-  const [isToastOpen, setToastOpen] = useState(false)
 
   const handleSubscribe = useCallback(async (event: Conference.Type) => {
     try {
@@ -53,21 +51,40 @@ const FeedYear: NextPage = () => {
 
       const userId = currentUser?.id
 
-      reminder.mutate({ userId, eventId: event.id })
+      const existingReminder = await api.reminder.getByEvent.fetch({
+        userId,
+        eventId: event.id,
+      })
 
-      if (isProd()) {
-        const fcmToken = window.localStorage.getItem('@whatconf/fcm') ?? ''
-        const response = await fetch('/api/subscribe', {
-          body: JSON.stringify({ fcmToken, event }),
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+      if (existingReminder) {
+        showToast({
+          type: 'error',
+          title: 'You are already subscribed to this event',
+          placement: 'bottom-right',
         })
-        const data = await response.json()
+        return
       }
 
-      setToastOpen(true)
+      reminder.mutate({ userId, eventId: event.id })
+
+      // if (isProd()) {
+      //   const fcmToken = window.localStorage.getItem('@whatconf/fcm') ?? ''
+      //   const response = await fetch('/api/subscribe', {
+      //     body: JSON.stringify({ fcmToken, event }),
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //   })
+      //   const data = await response.json()
+      // }
+
+      showToast({
+        type: 'success',
+        title: 'Subscribed!',
+        description:
+          "You're now subscribed and will be notified a day before the event starts!",
+      })
     } catch (error) {
       if (error instanceof Error) {
         throw new Error('Failed to subscribe user to conference', error)
@@ -90,15 +107,6 @@ const FeedYear: NextPage = () => {
             </Button>
           </div>
         </AlertDialog>
-
-        <Toast
-          type="success"
-          open={isToastOpen}
-          swipe="up"
-          onOpenChange={setToastOpen}
-          title="Subscribed!"
-          description="You're now subscribed and will be notified a day before the event starts!"
-        />
 
         <div className={styles.controls}>
           <Button as={Link} href="/create" colorScheme="gray">

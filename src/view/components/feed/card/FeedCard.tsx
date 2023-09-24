@@ -1,7 +1,7 @@
 import { useId } from 'react'
 
-import { Conference } from '../../../../domain/Conference'
-import { formattedDate } from '../../../formatters/date'
+import { Conference } from '@/domain/Conference'
+import { formattedDate } from '@/view/formatters/date'
 import { Bell, Clock, Link as LinkIcon, Pin } from '../../icons'
 import styles from './FeedCard.module.css'
 
@@ -43,6 +43,17 @@ const FeedCard = ({
         <p>{description}</p>
       </div>
       <div className={styles.actions}>
+        <button
+          id={`button-${id}`}
+          type="button"
+          aria-labelledby={`button-${id} card-title-${id}`}
+          className={styles.button}
+          onClick={onSubscribe}
+        >
+          <Bell width={20} height={20} />
+          Subscribe
+        </button>
+
         <a
           href={link}
           className={styles.link}
