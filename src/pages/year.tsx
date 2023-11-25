@@ -67,18 +67,6 @@ const FeedYear: NextPage = () => {
 
       reminder.mutate({ userId, eventId: event.id })
 
-      // if (isProd()) {
-      //   const fcmToken = window.localStorage.getItem('@whatconf/fcm') ?? ''
-      //   const response = await fetch('/api/subscribe', {
-      //     body: JSON.stringify({ fcmToken, event }),
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //   })
-      //   const data = await response.json()
-      // }
-
       showToast({
         type: 'success',
         title: 'Subscribed!',

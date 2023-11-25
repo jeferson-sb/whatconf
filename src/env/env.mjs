@@ -24,22 +24,15 @@ const server = z.object({
   DISCORD_CLIENT_SECRET: z.string(),
   GOOGLE_CLIENT_ID: z.string(),
   GOOGLE_CLIENT_SECRET: z.string(),
+  ONESIGNAL_APP_ID: z.string(),
+  ONESIGNAL_SAFARI_ID: z.string()
 })
 
 /**
  * Specify your client-side environment variables schema here. This way you can ensure the app isn't
  * built with invalid env vars. To expose them to the client, prefix them with `NEXT_PUBLIC_`.
  */
-const client = z.object({
-  NEXT_PUBLIC_FIREBASE_APIKEY: z.string(),
-  NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: z.string(),
-  NEXT_PUBLIC_FIREBASE_PROJECTID: z.string(),
-  NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: z.string(),
-  NEXT_PUBLIC_FIREBASE_MESSAGING_SENDERID: z.string(),
-  NEXT_PUBLIC_FIREBASE_APPID: z.string(),
-  NEXT_PUBLIC_FIREBASE_MEASUREMENTID: z.string(),
-  NEXT_PUBLIC_FIREBASE_VAPIDKEY: z.string(),
-})
+const client = z.object({})
 
 /**
  * You can't destruct `process.env` as a regular object in the Next.js edge runtimes (e.g.
@@ -58,18 +51,8 @@ const processEnv = {
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
   NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-  NEXT_PUBLIC_FIREBASE_APIKEY: process.env.NEXT_PUBLIC_FIREBASE_APIKEY,
-  NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN:
-    process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  NEXT_PUBLIC_FIREBASE_PROJECTID: process.env.NEXT_PUBLIC_FIREBASE_PROJECTID,
-  NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET:
-    process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  NEXT_PUBLIC_FIREBASE_MESSAGING_SENDERID:
-    process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDERID,
-  NEXT_PUBLIC_FIREBASE_APPID: process.env.NEXT_PUBLIC_FIREBASE_APPID,
-  NEXT_PUBLIC_FIREBASE_MEASUREMENTID:
-    process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENTID,
-  NEXT_PUBLIC_FIREBASE_VAPIDKEY: process.env.NEXT_PUBLIC_FIREBASE_VAPIDKEY,
+  ONESIGNAL_APP_ID: process.env.ONESIGNAL_APP_ID,
+  ONESIGNAL_SAFARI_ID: process.env.ONESIGNAL_SAFARI_ID
 }
 
 // Don't touch the part below
