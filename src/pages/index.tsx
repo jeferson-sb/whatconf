@@ -1,8 +1,6 @@
 import { type NextPage } from 'next'
 import Link from 'next/link'
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { getToken, getMessaging } from 'firebase/messaging'
-import firebase from 'firebase/compat/app'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { trpc } from '../utils/trpc'
 import { type Conference } from '../domain/Conference'
@@ -13,12 +11,12 @@ import { Plus } from '@/view/components/icons'
 import { Avatar } from '@/view/components/avatar'
 import { AlertDialog } from '@/view/components/base/dialog'
 
-import { vapidKey } from '@/lib/firebase'
-
 import styles from './index.module.css'
 import { useAuth } from '@/hook/useAuth'
 import { useToast } from '@/hook/useToast'
+
 import { isProd } from '@/lib/detectEnv'
+import { initializeOneSignal } from '@/lib/oneSignal'
 
 const Home: NextPage = () => {
   const eventsQuery = trpc.conference.all.useQuery()
@@ -41,26 +39,12 @@ const Home: NextPage = () => {
     [categories]
   )
 
+  const oneSignalInitiated = useRef<null | boolean>(null);
   const [isSubscribeDialogOpen, setSubscribeDialog] = useState(false)
 
   const handleSignIn = () => signIn()
 
   const handleLogout = () => signOut()
-
-  const enableNotifications = useCallback(async () => {
-    try {
-      const status = await Notification.requestPermission()
-
-      if (status === 'granted' && isProd()) {
-        const messagingService = getMessaging(firebase.apps[0])
-
-        const fcm = await getToken(messagingService, { vapidKey })
-        window.localStorage.setItem('@whatconf/fcm', JSON.stringify(fcm))
-      }
-    } catch (error) {
-      console.error('An error occurred while retrieving token.', error)
-    }
-  }, [])
 
   const handleSubscribe = useCallback(async (event: Conference.Type) => {
     try {
@@ -73,18 +57,6 @@ const Home: NextPage = () => {
       const userId = currentUser?.id
 
       reminder.mutate({ userId, eventId: event.id })
-
-      // if (isProd()) {
-      //   const fcmToken = window.localStorage.getItem('@whatconf/fcm') ?? ''
-      //   const response = await fetch('/api/subscribe', {
-      //     body: JSON.stringify({ fcmToken, event }),
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //   })
-      //   const data = await response.json()
-      // }
 
       showToast({
         type: 'success',
@@ -100,7 +72,11 @@ const Home: NextPage = () => {
   }, [])
 
   useEffect(() => {
-    enableNotifications()
+    if (oneSignalInitiated.current || !session?.user.id) return;
+
+    initializeOneSignal(session.user.id, () => {
+      oneSignalInitiated.current = true;
+    }, (e) => console.error(e))
   }, [])
 
   return (

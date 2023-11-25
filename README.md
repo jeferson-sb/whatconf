@@ -31,7 +31,7 @@ cp .env.example .env
 Fill the environment variables with **your** credentials. For more info see:
 
 - Check next-auth [social providers documentation](https://next-auth.js.org/providers)
-- Check the setup of a new project in [Firebase](https://firebase.google.com/docs/web/setup)
+- Check [OneSignal documentation](https://documentation.onesignal.com/docs/react-js-setup)
 
 Start a postgres database or use docker:
 
