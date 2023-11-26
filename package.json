@@ -9,6 +9,7 @@
     "db:seed": "prisma db seed",
     "db:migrate": "prisma migrate dev",
     "db:setup": "npm run db:generate && npm run db:migrate && npm run db:seed",
+    "postinstall": "npm run db:generate",
     "lint": "next lint",
     "start": "next start",
     "test": "vitest",
