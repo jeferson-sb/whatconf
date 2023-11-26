@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useState } from 'react'
 import { type NextPage } from 'next'
 import Link from 'next/link'
+import dayjs from 'dayjs'
 
 import styles from './year.module.css'
 
@@ -44,9 +45,19 @@ const FeedYear: NextPage = () => {
   const handleSubscribe = useCallback(async (event: Conference.Type) => {
     try {
       const currentUser = session?.user
+      const isPast = dayjs().isAfter(event.endDate)
 
       if (!currentUser || !isAuthenticated) {
         return setSubscribeDialog(true)
+      }
+
+      if (isPast) {
+        showToast({
+          type: 'error',
+          title: 'You cannot subscribe to a past conference',
+          placement: 'bottom-right',
+        })
+        return
       }
 
       const userId = currentUser?.id
