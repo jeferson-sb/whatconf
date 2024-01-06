@@ -31,8 +31,8 @@ const server = z.object({
  * built with invalid env vars. To expose them to the client, prefix them with `NEXT_PUBLIC_`.
  */
 const client = z.object({
-  ONESIGNAL_APP_ID: z.string(),
-  ONESIGNAL_SAFARI_ID: z.string()
+  NEXT_PUBLIC_ONESIGNAL_APP_ID: z.string(),
+  NEXT_PUBLIC_ONESIGNAL_SAFARI_ID: z.string()
 })
 
 /**
@@ -52,8 +52,8 @@ const processEnv = {
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
   NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-  ONESIGNAL_APP_ID: process.env.ONESIGNAL_APP_ID,
-  ONESIGNAL_SAFARI_ID: process.env.ONESIGNAL_SAFARI_ID
+  NEXT_PUBLIC_ONESIGNAL_APP_ID: process.env.NEXT_PUBLIC_ONESIGNAL_APP_ID,
+  NEXT_PUBLIC_ONESIGNAL_SAFARI_ID: process.env.NEXT_PUBLIC_ONESIGNAL_SAFARI_ID
 }
 
 // Don't touch the part below

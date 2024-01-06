@@ -8,8 +8,8 @@ export const initializeOneSignal = async (
 ) => {
   try {
     await OneSignal.init({
-      appId: env.ONESIGNAL_APP_ID,
-      safari_web_id: env.ONESIGNAL_SAFARI_ID,
+      appId: env.NEXT_PUBLIC_ONESIGNAL_APP_ID,
+      safari_web_id: env.NEXT_PUBLIC_ONESIGNAL_SAFARI_ID,
       allowLocalhostAsSecureOrigin: true,
     });
 
