@@ -24,15 +24,16 @@ const server = z.object({
   DISCORD_CLIENT_SECRET: z.string(),
   GOOGLE_CLIENT_ID: z.string(),
   GOOGLE_CLIENT_SECRET: z.string(),
-  ONESIGNAL_APP_ID: z.string(),
-  ONESIGNAL_SAFARI_ID: z.string()
 })
 
 /**
  * Specify your client-side environment variables schema here. This way you can ensure the app isn't
  * built with invalid env vars. To expose them to the client, prefix them with `NEXT_PUBLIC_`.
  */
-const client = z.object({})
+const client = z.object({
+  ONESIGNAL_APP_ID: z.string(),
+  ONESIGNAL_SAFARI_ID: z.string()
+})
 
 /**
  * You can't destruct `process.env` as a regular object in the Next.js edge runtimes (e.g.

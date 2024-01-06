@@ -15,7 +15,6 @@ import styles from './index.module.css'
 import { useAuth } from '@/hook/useAuth'
 import { useToast } from '@/hook/useToast'
 
-import { isProd } from '@/lib/detectEnv'
 import { initializeOneSignal } from '@/lib/oneSignal'
 
 const Home: NextPage = () => {
@@ -76,6 +75,7 @@ const Home: NextPage = () => {
 
     initializeOneSignal(session.user.id, () => {
       oneSignalInitiated.current = true;
+      console.log('window.OneSignal.initialized', window?.OneSignal?.initialized)
     }, (e) => console.error(e))
   }, [])
 
