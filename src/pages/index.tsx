@@ -75,7 +75,6 @@ const Home: NextPage = () => {
 
     initializeOneSignal(session.user.id, () => {
       oneSignalInitiated.current = true;
-      console.log('window.OneSignal.initialized', window?.OneSignal?.initialized)
     }, (e) => console.error(e))
   }, [])
 
