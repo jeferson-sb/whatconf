@@ -70,6 +70,8 @@ model Category {
   id     String  @id @default(cuid())
   name   String  @unique
   events Event[]
+
+  @@index([id, name])
 }
 
 model Event {
@@ -79,7 +81,7 @@ model Event {
   title       String
   description String?
   location    String
-  link        String     @unique
+  link        String     
   virtual     Boolean
   startDate   DateTime
   endDate     DateTime

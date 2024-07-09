@@ -5,7 +5,7 @@ import cx from 'clsx'
 import type { Conference } from '@/domain/Conference'
 import styles from './AgendaCard.module.css'
 
-import { shortDateFormatted } from '@/view/formatters'
+import { shortDateFormatted } from '@/view/formatters/date'
 
 type AgendaCardProps = {
   event: Omit<Conference.Type, 'organizerId'>
