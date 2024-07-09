@@ -23,7 +23,7 @@ const FeedYear: NextPage = () => {
   const eventsQuery = trpc.conference.yearly.useQuery()
   const categories = trpc.category.all.useQuery()
   const reminder = trpc.reminder.create.useMutation()
-  const api = trpc.useContext()
+  const api = trpc.useUtils()
 
   const { isAuthenticated, session, signIn, signOut } = useAuth()
   const { showToast } = useToast()

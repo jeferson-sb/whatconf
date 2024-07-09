@@ -38,7 +38,7 @@ const Home: NextPage = () => {
     [categories]
   )
 
-  const oneSignalInitiated = useRef<null | boolean>(null);
+  const oneSignalInitiated = useRef<null | boolean>(null)
   const [isSubscribeDialogOpen, setSubscribeDialog] = useState(false)
 
   const handleSignIn = () => signIn()
@@ -60,8 +60,7 @@ const Home: NextPage = () => {
       showToast({
         type: 'success',
         title: 'Subscribed!',
-        description:
-          "You're now subscribed and will be notified a day before the event starts!",
+        description: "You've added the event to your agenda!",
       })
     } catch (error) {
       if (error instanceof Error) {
@@ -71,11 +70,15 @@ const Home: NextPage = () => {
   }, [])
 
   useEffect(() => {
-    if (oneSignalInitiated.current || !session?.user.id) return;
+    if (oneSignalInitiated.current || !session?.user.id) return
 
-    initializeOneSignal(session.user.id, () => {
-      oneSignalInitiated.current = true;
-    }, (e) => console.error(e))
+    initializeOneSignal(
+      session.user.id,
+      () => {
+        oneSignalInitiated.current = true
+      },
+      (e) => console.error(e)
+    )
   }, [])
 
   return (
