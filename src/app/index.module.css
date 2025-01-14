@@ -1,0 +1,6 @@
+.feed {
+  display: flex;
+  flex-flow: column wrap;
+  margin-block-end: var(--size-8);
+  gap: var(--size-1);
+}

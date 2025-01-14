@@ -1,7 +1,8 @@
 .root {
   --_bg-color: var(--green-2);
   --_shadow-color: 0deg 0% 67%;
-  --_shadow-elevation: 0px 0.5px 0.5px hsl(var(--_shadow-color) / 0.29),
+  --_shadow-elevation:
+    0px 0.5px 0.5px hsl(var(--_shadow-color) / 0.29),
     0px 1.4px 1.5px -1px hsl(var(--_shadow-color) / 0.27),
     -0.1px 3.7px 3.9px -2px hsl(var(--_shadow-color) / 0.24),
     -0.2px 9.1px 9.6px -3px hsl(var(--_shadow-color) / 0.22);
@@ -16,24 +17,24 @@
   align-items: center;
 }
 
-.root[data-state='open'] {
+.root[data-state="open"] {
   animation: slideIn 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.root[data-state='closed'] {
+.root[data-state="closed"] {
   animation: hide 100ms ease-in;
 }
 
-.root[data-swipe='move'] {
+.root[data-swipe="move"] {
   transform: translateX(var(--radix-toast-swipe-move-x));
 }
 
-.root[data-swipe='cancel'] {
+.root[data-swipe="cancel"] {
   transform: translateX(0);
   transition: transform 200ms ease-out;
 }
 
-.root[data-swipe='end'] {
+.root[data-swipe="end"] {
   animation: swipeOut 100ms ease-out;
 }
 

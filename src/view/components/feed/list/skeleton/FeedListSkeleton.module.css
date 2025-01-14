@@ -10,8 +10,8 @@
   display: flex;
   flex-flow: column wrap;
   border-radius: var(--radius-conditional-2);
-  box-shadow: 0 0 0 1px hsl(var(--shadow-color)),
-    0 2px 4px hsl(var(--shadow-color)), 0 12px 24px hsl(var(--shadow-color));
+  box-shadow: 0 0 0 1px hsl(var(--shadow-color)), 0 2px 4px
+    hsl(var(--shadow-color)), 0 12px 24px hsl(var(--shadow-color));
   flex-basis: 229px;
   background-color: var(--base-1);
 }

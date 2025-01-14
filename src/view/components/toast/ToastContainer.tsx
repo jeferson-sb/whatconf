@@ -9,7 +9,7 @@ const ToastContainer = ({
   toasts: ToastShape[]
   removeToast: (i: number) => void
 }) => (
-  <RDToastProvider swipeDirection="up">
+  <RDToastProvider swipeDirection='up'>
     {toasts?.map((toast, index) => (
       <Toast
         key={index}

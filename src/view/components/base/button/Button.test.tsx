@@ -20,7 +20,7 @@ describe('<Button />', () => {
   })
 
   test('render as anchor', () => {
-    render(<Button as="a">Home</Button>)
+    render(<Button as='a'>Home</Button>)
 
     expect(screen.getByText('Home').tagName).toBe('A')
   })

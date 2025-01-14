@@ -12,13 +12,13 @@ describe('<FeedCard />', () => {
 
     render(
       <FeedCard
-        title="Conference one"
-        description="Lorem ipsum dolor sit"
+        title='Conference one'
+        description='Lorem ipsum dolor sit'
         startDate={startDate}
         endDate={endDate}
-        link="https://conf.org"
-        location="Mars"
-        category="Front-end"
+        link='https://conf.org'
+        location='Mars'
+        category='Front-end'
         onSubscribe={onSubscribe}
       />
     )
@@ -35,13 +35,13 @@ describe('<FeedCard />', () => {
 
     render(
       <FeedCard
-        title="Conference one"
-        description="Lorem ipsum dolor sit"
+        title='Conference one'
+        description='Lorem ipsum dolor sit'
         startDate={startDate}
         endDate={endDate}
-        link="https://conf.org"
-        location="Mars"
-        category="Front-end"
+        link='https://conf.org'
+        location='Mars'
+        category='Front-end'
         onSubscribe={onSubscribe}
       />
     )
@@ -57,13 +57,13 @@ describe('<FeedCard />', () => {
 
     render(
       <FeedCard
-        title="Conference one"
-        description="Lorem ipsum dolor sit"
+        title='Conference one'
+        description='Lorem ipsum dolor sit'
         startDate={startDate}
         endDate={endDate}
-        link="https://conf.org"
-        location="Mars"
-        category="Front-end"
+        link='https://conf.org'
+        location='Mars'
+        category='Front-end'
         onSubscribe={onSubscribe}
       />
     )

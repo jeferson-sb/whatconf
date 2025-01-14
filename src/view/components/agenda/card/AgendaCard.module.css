@@ -27,7 +27,7 @@
 }
 
 .card::before {
-  content: '';
+  content: "";
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -130,7 +130,7 @@
 }
 
 .dot::before {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   top: 50%;

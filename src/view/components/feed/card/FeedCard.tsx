@@ -45,7 +45,7 @@ const FeedCard = ({
       <div className={styles.actions}>
         <button
           id={`button-${id}`}
-          type="button"
+          type='button'
           aria-labelledby={`button-${id} card-title-${id}`}
           className={styles.button}
           onClick={onSubscribe}
@@ -57,8 +57,8 @@ const FeedCard = ({
         <a
           href={link}
           className={styles.link}
-          rel="noopener noreferrer"
-          target="_blank"
+          rel='noopener noreferrer'
+          target='_blank'
         >
           <LinkIcon width={20} height={20} />
           Link

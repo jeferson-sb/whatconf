@@ -12,7 +12,7 @@ WhatConf have a feed of conferences that users can check its dates, location, li
 
 - [Next 13](https://nextjs.org/) - Framework
 - [Next-Auth.js](https://next-auth.js.org) - Authentication and Authorization
-- [Prisma](https://prisma.io) - Database
+- [Prisma](https://prisma.io) - Database ORM
 - [tRPC](https://trpc.io) - Backend
 - [React-Query](https://tanstack.com/query/v3/) - Data-fetching
 - [Open-props](https://open-props.style/) - Styling solution
@@ -32,12 +32,6 @@ Fill the environment variables with **your** credentials. For more info see:
 
 - Check next-auth [social providers documentation](https://next-auth.js.org/providers)
 - Check [OneSignal documentation](https://documentation.onesignal.com/docs/react-js-setup)
-
-Start a postgres database or use docker:
-
-```
-docker-compose up
-```
 
 Run database migration and seeds
 

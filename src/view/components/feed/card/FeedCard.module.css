@@ -6,8 +6,8 @@
   display: flex;
   flex-flow: column wrap;
   border-radius: var(--radius-2);
-  box-shadow: 0 0 0 1px hsl(var(--_shadow-color)),
-    0 2px 4px hsl(var(--_shadow-color)), 0 12px 24px hsl(var(--_shadow-color));
+  box-shadow: 0 0 0 1px hsl(var(--_shadow-color)), 0 2px 4px
+    hsl(var(--_shadow-color)), 0 12px 24px hsl(var(--_shadow-color));
   background-color: var(--_card-bg);
 }
 

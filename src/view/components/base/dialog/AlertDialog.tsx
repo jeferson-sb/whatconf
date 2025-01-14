@@ -1,3 +1,5 @@
+'use client'
+
 import * as RDAlertDialog from '@radix-ui/react-alert-dialog'
 
 import { Close } from '@/view/components/icons'

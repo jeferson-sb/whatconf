@@ -1,5 +1,5 @@
-import { env } from '@/env/env.mjs';
-import OneSignal from 'react-onesignal';
+import { env } from '@/env/env'
+import OneSignal from 'react-onesignal'
 
 export const initializeOneSignal = async (
   userId: string,
@@ -11,10 +11,10 @@ export const initializeOneSignal = async (
       appId: env.NEXT_PUBLIC_ONESIGNAL_APP_ID,
       safari_web_id: env.NEXT_PUBLIC_ONESIGNAL_SAFARI_ID,
       allowLocalhostAsSecureOrigin: true,
-    });
+    })
 
-    await OneSignal.login(userId);
-    await OneSignal.Slidedown.promptPush();
+    await OneSignal.login(userId)
+    await OneSignal.Slidedown.promptPush()
 
     onInitialized()
   } catch (error) {

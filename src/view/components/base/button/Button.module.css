@@ -53,7 +53,7 @@
 .button::before {
   --transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 0);
 
-  content: '';
+  content: "";
   z-index: -1;
   position: absolute;
   top: 50%;

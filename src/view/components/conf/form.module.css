@@ -2,7 +2,7 @@
   margin-block-end: var(--size-8);
 }
 
-.form button[type='submit'] {
+.form button[type="submit"] {
   width: 100%;
   justify-content: center;
 }
@@ -19,7 +19,7 @@
   color: var(--text-fg-1);
 }
 
-.input[aria-invalid='true'] {
+.input[aria-invalid="true"] {
   --border-color: var(--red-2);
 }
 

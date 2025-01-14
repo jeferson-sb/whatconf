@@ -1,4 +1,6 @@
-import React, { createContext, useMemo, useState } from 'react'
+'use client'
+
+import React, { createContext, useEffect, useMemo, useState } from 'react'
 
 import { ToastContainer } from './ToastContainer'
 import { ToastShape } from './Toast'
@@ -18,6 +20,15 @@ const ToastProvider = ({ children }: { children: React.ReactNode }) => {
     setToasts((prev) => prev.filter((_, i) => i !== index))
 
   const value = useMemo(() => ({ toasts, showToast }), [])
+
+  useEffect(() => {
+    let t;
+    if (toasts.length > 0) {
+      t = setTimeout(() => removeToast(toasts.length - 1), 5000)
+    }
+
+    return () => clearTimeout(t)
+  }, [toasts])
 
   return (
     <ToastContext.Provider value={value}>

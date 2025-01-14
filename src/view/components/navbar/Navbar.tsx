@@ -1,11 +1,13 @@
+'use client'
+
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import cx from 'clsx'
+
+import { usePathname } from 'next/navigation'
 
 import styles from './Navbar.module.css'
 
 const Navbar = () => {
-  const router = useRouter()
+  const pathname = usePathname()
 
   // TODO: Refactor to use anchor positioning
   const indicatorStyles = {
@@ -13,30 +15,29 @@ const Navbar = () => {
     '/year': { '--translateActiveX': '100%' },
     '/agenda': { '--translateActiveX': 'calc(200% + 16px)' },
   }
-  const path = router.asPath
 
   return (
     <header className={styles.header}>
-      <nav id="main-nav">
+      <nav id='main-nav'>
         <ul className={styles.menu}>
           <li className={styles.item}>
-            <Link className={styles.link} href="/">
+            <Link className={styles.link} href='/'>
               Feed
             </Link>
           </li>
           <li className={styles.item}>
-            <Link className={styles.link} href="/year">
+            <Link className={styles.link} href='/year'>
               This year
             </Link>
           </li>
           <li className={styles.item}>
-            <Link className={styles.link} href="/agenda">
+            <Link className={styles.link} href='/agenda'>
               Agenda
             </Link>
           </li>
           <span
             className={styles.indicator}
-            style={indicatorStyles[path]}
+            style={indicatorStyles[pathname]}
           ></span>
         </ul>
       </nav>
