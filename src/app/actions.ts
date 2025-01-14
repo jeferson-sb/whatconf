@@ -55,3 +55,7 @@ export async function reminderPerEvent({ userId, eventId }: { userId: string, ev
     return null
   }
 }
+
+export type CreateAction = typeof create
+export type ReminderPerEventAction = typeof reminderPerEvent
+export type RemindMeAction = typeof remindMe

@@ -12,14 +12,15 @@ import { Stack } from '../base/stack/Stack'
 import { Checkmark } from '../icons'
 import { type CreateFormState, creationValidationSchema } from './schema'
 import * as Category from '../../../domain/Category'
-import { create } from '@/app/actions'
+import { type CreateAction } from '@/app/actions'
 
 type CreateFormProps = {
   categories: Category.Type[]
+  action: CreateAction
   isLoading?: boolean
 }
 
-const CreateForm = ({ categories }: CreateFormProps) => {
+const CreateForm = ({ categories, action: create }: CreateFormProps) => {
   const { register, handleSubmit, watch, formState } = useForm<CreateFormState>(
     {
       resolver: zodResolver(creationValidationSchema),

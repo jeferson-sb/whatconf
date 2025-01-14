@@ -12,6 +12,7 @@ export default defineConfig({
     setupFiles: './__tests__/setup.ts',
     alias: {
       '@': path.resolve(__dirname, './src'),
+      '@tests': path.resolve(__dirname, './__tests__')
     },
   },
 })

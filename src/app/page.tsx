@@ -9,6 +9,7 @@ import { FeedList } from '@/view/components/feed'
 import { Container } from '@/view/components/container/Container'
 import { ControlsBar } from '@/view/components/controls-bar/ControlsBar'
 import { OneSignal } from '@/view/components/onesignal'
+import { reminderPerEvent, remindMe } from './actions'
 
 const Home = async () => {
   const conferences = await api.conference.all()
@@ -31,7 +32,7 @@ const Home = async () => {
           <ControlsBar session={session} />
 
           {allConferences && allConferences?.length > 0 ? (
-            <FeedList events={allConferences} session={session} />
+            <FeedList events={allConferences} session={session} remindPerEvent={reminderPerEvent} remindMe={remindMe} />
           ) : (
             <p>
               No upcoming events has been registered from this date, check the

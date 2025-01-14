@@ -9,14 +9,16 @@ import { FeedCard } from '../card/FeedCard'
 import styles from './FeedList.module.css'
 import { SubscribeDialog } from '@/view/components/subscribe/SubscribeDialog'
 import { useToast } from '@/hook/useToast'
-import { reminderPerEvent, remindMe } from '@/app/actions'
+import { type RemindMeAction, type ReminderPerEventAction } from '@/app/actions'
 
 type FeedListProps = {
   events: Conference.Type[]
   session: Session | null
+  remindPerEvent: ReminderPerEventAction
+  remindMe: RemindMeAction
 }
 
-const FeedList = ({ events, session }: FeedListProps) => {
+const FeedList = ({ events, session, remindMe, remindPerEvent }: FeedListProps) => {
   const { showToast } = useToast()
   const [isSubscribeDialogOpen, setSubscribeDialog] = useState(false)
   const onSubscribe = async (event: Conference.Type) => {
@@ -38,7 +40,7 @@ const FeedList = ({ events, session }: FeedListProps) => {
 
     try {
       const userId = currentUser?.id
-      const existingReminder = await reminderPerEvent({
+      const existingReminder = await remindPerEvent({
         userId,
         eventId: event.id,
       })

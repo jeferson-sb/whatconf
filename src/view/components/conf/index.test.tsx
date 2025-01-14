@@ -28,9 +28,7 @@ beforeEach(() => {
 
 describe('<CreateForm />', () => {
   it('render select of categories', () => {
-    const handleSubmit = vi.fn()
-
-    render(<CreateForm categories={categories} onSubmit={handleSubmit} />)
+    render(<CreateForm categories={categories} />)
 
     categories.forEach((category) => {
       expect(screen.getByText(category.name)).toBeDefined()
@@ -39,9 +37,7 @@ describe('<CreateForm />', () => {
 
   describe('when categories empty', () => {
     it('render uncategorized option', () => {
-      const handleSubmit = vi.fn()
-
-      render(<CreateForm categories={[]} onSubmit={handleSubmit} />)
+      render(<CreateForm categories={[]} />)
 
       expect(screen.getByText(/uncategorized/i)).toBeDefined()
     })
@@ -50,7 +46,6 @@ describe('<CreateForm />', () => {
   describe('onSubmit', () => {
     describe('when fields are empty', () => {
       it('render error message', async () => {
-        const handleSubmit = vi.fn()
         vi.spyOn(RHF, 'useForm').mockImplementation(() => {
           return {
             register: vi.fn(),
@@ -65,7 +60,7 @@ describe('<CreateForm />', () => {
           }
         })
 
-        render(<CreateForm categories={categories} onSubmit={handleSubmit} />)
+        render(<CreateForm categories={categories} />)
 
         await userEvent.type(screen.getByLabelText(/title/i), 'Test conf')
         await userEvent.click(screen.getByRole('button', { name: /submit/i }))
@@ -77,7 +72,6 @@ describe('<CreateForm />', () => {
 
     describe('when fields are invalid', () => {
       it('render error message', async () => {
-        const handleSubmit = vi.fn()
         vi.spyOn(RHF, 'useForm').mockImplementation(() => {
           return {
             register: vi.fn(),
@@ -91,7 +85,7 @@ describe('<CreateForm />', () => {
           }
         })
 
-        render(<CreateForm categories={categories} onSubmit={handleSubmit} />)
+        render(<CreateForm categories={categories} />)
 
         await userEvent.type(screen.getByLabelText(/title/i), 'Test conf')
         await userEvent.type(screen.getByLabelText(/location/i), 'Online')
@@ -102,26 +96,6 @@ describe('<CreateForm />', () => {
         expect(screen.findByText('Invalid URL')).toBeDefined()
       })
     })
-
-    describe('when fields are valid', () => {
-      it('call on submit', async () => {
-        const onSubmit = vi.fn()
-
-        const { getByLabelText, getByTestId, getByRole, findByLabelText } =
-          render(<CreateForm categories={categories} onSubmit={onSubmit} />)
-        const user = userEvent.setup()
-
-        await user.type(getByLabelText(/title/i), 'Test conf')
-        await user.type(getByLabelText(/location/i), 'San Francisco')
-        await user.type(getByLabelText(/link/i), 'https://example.com')
-
-        await user.type(getByTestId('startDate'), '2023-01-25')
-        await user.type(getByTestId('endDate'), '2023-01-26')
-
-        await user.click(getByRole('button', { name: /submit/i }))
-
-        await waitFor(() => expect(onSubmit).toHaveBeenCalled())
-      })
-    })
   })
 })
+

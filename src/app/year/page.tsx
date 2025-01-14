@@ -6,6 +6,7 @@ import { Container } from '@/view/components/container/Container'
 import { FeedList } from '@/view/components/feed'
 import { ControlsBar } from '@/view/components/controls-bar/ControlsBar'
 import { auth } from '@/server/auth'
+import { reminderPerEvent, remindMe } from '../actions'
 
 const Year = async () => {
   const conferences = await api.conference.yearly()
@@ -25,7 +26,7 @@ const Year = async () => {
       <section className={styles.feed}>
         <ControlsBar session={session} />
 
-        {conferences.length > 0 && <FeedList events={events} session={session} />}
+        {conferences.length > 0 && <FeedList events={events} session={session} remindPerEvent={reminderPerEvent} remindMe={remindMe} />}
       </section>
     </Container>
   )
