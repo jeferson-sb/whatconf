@@ -8,19 +8,19 @@ import Link from 'next/link'
 import { auth } from '@/server/auth'
 
 const Agenda = async () => {
-  const session = await auth();
+  const session = await auth()
   const currentUser = session?.user
 
   const userId = currentUser?.id
-  const agenda = await api.reminder.agenda(userId)
+  const agenda = userId ? await api.reminder.agenda(userId) : []
   const items = agenda?.sort((a, b) =>
     a.event.startDate > b.event.startDate ? 1 : -1
   )
 
   return (
     <Container>
-       <h2>Your current agenda:</h2>
-       <ul className={styles.list}>
+      <h2>Your current agenda:</h2>
+      <ul className={styles.list}>
         {!session?.user ? (
           <p>
             You are not authenticated yet.{' '}
