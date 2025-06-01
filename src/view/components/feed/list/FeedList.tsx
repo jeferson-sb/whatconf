@@ -18,7 +18,12 @@ type FeedListProps = {
   remindMe: RemindMeAction
 }
 
-const FeedList = ({ events, session, remindMe, remindPerEvent }: FeedListProps) => {
+const FeedList = ({
+  events,
+  session,
+  remindMe,
+  remindPerEvent,
+}: FeedListProps) => {
   const { showToast } = useToast()
   const [isSubscribeDialogOpen, setSubscribeDialog] = useState(false)
   const onSubscribe = async (event: Conference.Type) => {

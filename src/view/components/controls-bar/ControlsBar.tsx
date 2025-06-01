@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Session } from "next-auth";
+import { Session } from 'next-auth'
 
 import { Button } from '@/view/components/base/button/Button'
 import { Plus } from '@/view/components/icons'

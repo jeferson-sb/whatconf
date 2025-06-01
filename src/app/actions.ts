@@ -1,7 +1,7 @@
 'use server'
 
-import { api } from "@/trpc/server"
-import { CreateFormState } from "@/view/components/conf"
+import { api } from '@/trpc/server'
+import { CreateFormState } from '@/view/components/conf'
 
 export async function create(formData: CreateFormState) {
   const categories = await api.category.all()
@@ -38,7 +38,10 @@ export async function create(formData: CreateFormState) {
   }
 }
 
-export async function remindMe({ userId, eventId }: { userId: string, eventId: string }) {
+export async function remindMe({
+  userId,
+  eventId,
+}: { userId: string; eventId: string }) {
   try {
     await api.reminder.create({ userId, eventId })
   } catch (error) {
@@ -46,7 +49,10 @@ export async function remindMe({ userId, eventId }: { userId: string, eventId: s
   }
 }
 
-export async function reminderPerEvent({ userId, eventId }: { userId: string, eventId: string }) {
+export async function reminderPerEvent({
+  userId,
+  eventId,
+}: { userId: string; eventId: string }) {
   try {
     const reminder = await api.reminder.getByEvent({ userId, eventId })
     return reminder

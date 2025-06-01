@@ -7,11 +7,14 @@ import Link from 'next/link'
 import styles from './subscribe-dialog.module.css'
 
 type SubscribeDialogProps = {
-  dialogOpen: boolean;
-  onOpenChange: (open: boolean) => void;
+  dialogOpen: boolean
+  onOpenChange: (open: boolean) => void
 }
 
-const SubscribeDialog = ({ dialogOpen, onOpenChange }: SubscribeDialogProps) => {
+const SubscribeDialog = ({
+  dialogOpen,
+  onOpenChange,
+}: SubscribeDialogProps) => {
   return (
     <AlertDialog
       open={dialogOpen}

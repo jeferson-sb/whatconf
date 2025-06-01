@@ -11,8 +11,8 @@ import { reminderPerEvent, remindMe } from '../actions'
 const Year = async () => {
   const conferences = await api.conference.yearly()
   const categories = await api.category.all()
-  
-  const session = await auth();
+
+  const session = await auth()
 
   const events = conferences
     ?.map((event) => ({
@@ -26,7 +26,14 @@ const Year = async () => {
       <section className={styles.feed}>
         <ControlsBar session={session} />
 
-        {conferences.length > 0 && <FeedList events={events} session={session} remindPerEvent={reminderPerEvent} remindMe={remindMe} />}
+        {conferences.length > 0 && (
+          <FeedList
+            events={events}
+            session={session}
+            remindPerEvent={reminderPerEvent}
+            remindMe={remindMe}
+          />
+        )}
       </section>
     </Container>
   )

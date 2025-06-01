@@ -1,10 +1,7 @@
 import dayjs from 'dayjs'
-import { z } from "zod";
+import { z } from 'zod'
 
-import {
-  createTRPCRouter,
-  publicProcedure,
-} from "@/server/api/trpc";
+import { createTRPCRouter, publicProcedure } from '@/server/api/trpc'
 
 export const confValidationSchema = z.object({
   id: z.string().optional(),
@@ -17,7 +14,6 @@ export const confValidationSchema = z.object({
   endDate: z.date(),
   categoryId: z.string(),
 })
-
 
 const currentYear = dayjs().year()
 const startOfYear = new Date(currentYear, 0, 1)
@@ -69,4 +65,3 @@ export const confRouter = createTRPCRouter({
       })
     }),
 })
-

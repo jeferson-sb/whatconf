@@ -32,7 +32,12 @@ const Home = async () => {
           <ControlsBar session={session} />
 
           {allConferences && allConferences?.length > 0 ? (
-            <FeedList events={allConferences} session={session} remindPerEvent={reminderPerEvent} remindMe={remindMe} />
+            <FeedList
+              events={allConferences}
+              session={session}
+              remindPerEvent={reminderPerEvent}
+              remindMe={remindMe}
+            />
           ) : (
             <p>
               No upcoming events has been registered from this date, check the

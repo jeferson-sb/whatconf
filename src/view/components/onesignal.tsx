@@ -1,9 +1,9 @@
 'use client'
 
-import { env } from "@/env/env";
-import { Session } from "next-auth";
-import { useEffect, useRef } from "react"
-import ReactOneSignal from 'react-onesignal';
+import { env } from '@/env/env'
+import { Session } from 'next-auth'
+import { useEffect, useRef } from 'react'
+import ReactOneSignal from 'react-onesignal'
 
 const OneSignal = ({ session }: { session: Session | null }) => {
   const oneSignalInitiated = useRef<null | boolean>(null)
@@ -15,11 +15,10 @@ const OneSignal = ({ session }: { session: Session | null }) => {
       ReactOneSignal.init({
         appId: env.NEXT_PUBLIC_ONESIGNAL_APP_ID,
         safari_web_id: env.NEXT_PUBLIC_ONESIGNAL_SAFARI_ID,
-        allowLocalhostAsSecureOrigin: true
-      });
-      
+        allowLocalhostAsSecureOrigin: true,
+      })
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
     if (session?.user.id) ReactOneSignal.login(session?.user?.id)

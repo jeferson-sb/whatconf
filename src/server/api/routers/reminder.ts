@@ -1,9 +1,6 @@
 import { z } from 'zod'
 
-import {
-  createTRPCRouter,
-  publicProcedure,
-} from "@/server/api/trpc";
+import { createTRPCRouter, publicProcedure } from '@/server/api/trpc'
 
 const createValidation = z.object({
   userId: z.string().cuid(),

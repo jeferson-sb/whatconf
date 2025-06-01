@@ -22,7 +22,7 @@ const ToastProvider = ({ children }: { children: React.ReactNode }) => {
   const value = useMemo(() => ({ toasts, showToast }), [])
 
   useEffect(() => {
-    let t;
+    let t
     if (toasts.length > 0) {
       t = setTimeout(() => removeToast(toasts.length - 1), 5000)
     }
