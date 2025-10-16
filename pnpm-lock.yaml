@@ -12,8 +12,8 @@ importers:
         specifier: ^2.9.1
         version: 2.9.1(@prisma/client@5.16.2(prisma@5.16.2))
       '@hookform/resolvers':
-        specifier: ^2.9.11
-        version: 2.9.11(react-hook-form@7.56.4(react@18.3.1))
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.56.4(react@18.3.1))
       '@prisma/client':
         specifier: 5.16.2
         version: 5.16.2(prisma@5.16.2)
@@ -441,10 +441,10 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@hookform/resolvers@2.9.11':
-    resolution: {integrity: sha512-bA3aZ79UgcHj7tFV7RlgThzwSSHZgvfbt2wprldRkYBcMopdMvHyO17Wwp/twcJasNFischFfS7oz8Katz8DdQ==}
+  '@hookform/resolvers@5.2.2':
+    resolution: {integrity: sha512-A/IxlMLShx3KjV/HeTcTfaMxdwy690+L/ZADoeaTltLx+CVuzkeVIPuybK3jrRfw7YZnmdKsVVHAlEPIAEUNlA==}
     peerDependencies:
-      react-hook-form: ^7.0.0
+      react-hook-form: ^7.55.0
 
   '@img/colour@1.0.0':
     resolution: {integrity: sha512-A5P/LfWGFSl6nsckYtjw9da+19jB8hkJ6ACTGcDfEJ0aE+l2n2El7dsVM7UVHZQ9s2lmYMWlrS21YLy2IR1LUw==}
@@ -1000,6 +1000,9 @@ packages:
     resolution: {integrity: sha512-Wq2zpapRYLfi4aKxf2Xff0tN+7slj2d4R87WEzqw7ZLsVvO5zwYCIuEGSZYiK41+GlwUo1HiR+GdkLEJnCKTCw==}
     cpu: [x64]
     os: [win32]
+
+  '@standard-schema/utils@0.3.0':
+    resolution: {integrity: sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==}
 
   '@swc/helpers@0.5.15':
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
@@ -2099,8 +2102,9 @@ snapshots:
   '@esbuild/win32-x64@0.25.5':
     optional: true
 
-  '@hookform/resolvers@2.9.11(react-hook-form@7.56.4(react@18.3.1))':
+  '@hookform/resolvers@5.2.2(react-hook-form@7.56.4(react@18.3.1))':
     dependencies:
+      '@standard-schema/utils': 0.3.0
       react-hook-form: 7.56.4(react@18.3.1)
 
   '@img/colour@1.0.0':
@@ -2530,6 +2534,8 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.41.1':
     optional: true
+
+  '@standard-schema/utils@0.3.0': {}
 
   '@swc/helpers@0.5.15':
     dependencies:
