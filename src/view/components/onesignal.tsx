@@ -17,8 +17,12 @@ const OneSignal = ({ session }: { session: Session | null }) => {
         safari_web_id: env.NEXT_PUBLIC_ONESIGNAL_SAFARI_ID,
         allowLocalhostAsSecureOrigin: true,
       })
+
+      oneSignalInitiated.current = true
     }
   }, [])
+
+  console.log('OneSignal! ', oneSignalInitiated.current)
 
   useEffect(() => {
     if (session?.user.id) ReactOneSignal.login(session?.user?.id)
