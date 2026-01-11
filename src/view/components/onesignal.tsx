@@ -16,15 +16,14 @@ const OneSignal = ({ session }: { session: Session | null }) => {
         appId: env.NEXT_PUBLIC_ONESIGNAL_APP_ID,
         safari_web_id: env.NEXT_PUBLIC_ONESIGNAL_SAFARI_ID,
         allowLocalhostAsSecureOrigin: true,
-      })
+      }).then(() => ReactOneSignal.Debug.setLogLevel('trace'))
 
       oneSignalInitiated.current = true
     }
   }, [])
 
-  console.log('OneSignal! ', oneSignalInitiated.current)
-
   useEffect(() => {
+    console.log('User session', session?.user?.id)
     if (session?.user.id) ReactOneSignal.login(session?.user?.id)
   }, [session])
 
