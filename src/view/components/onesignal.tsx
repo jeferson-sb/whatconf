@@ -16,6 +16,9 @@ const OneSignal = ({ session }: { session: Session | null }) => {
         appId: env.NEXT_PUBLIC_ONESIGNAL_APP_ID,
         safari_web_id: env.NEXT_PUBLIC_ONESIGNAL_SAFARI_ID,
         allowLocalhostAsSecureOrigin: true,
+        notifyButton: {
+          enable: true,
+        },
       }).then(() => ReactOneSignal.Debug.setLogLevel('trace'))
 
       oneSignalInitiated.current = true
