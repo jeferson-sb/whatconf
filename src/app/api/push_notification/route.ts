@@ -1,6 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 
 const prisma = new PrismaClient();
+
+dayjs.extend(utc);
 
 async function sendPushNotification(eventName: string, userIds: string[]) {
   const apiKey = process.env["ONESIGNAL_API_KEY"];
@@ -33,9 +37,27 @@ async function sendPushNotification(eventName: string, userIds: string[]) {
   });
 }
 
+const getWeekDaysUTC = () => {
+  const days = [];
+  let startOfWeek = dayjs.utc().startOf("week");
+
+  for (let i = 0; i < 7; i++) {
+    days.push(startOfWeek.add(i, "day").format());
+  }
+
+  return days;
+};
+
 export async function POST(request: Request) {
   const reminders = await prisma.reminder.findMany({
     select: { userId: true, event: true },
+    where: {
+      event: {
+        startDate: {
+          in: getWeekDaysUTC(),
+        },
+      },
+    },
   });
 
   const eventsPerUser = Object.groupBy(
