@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.9.1",
-    "@hookform/resolvers": "^2.9.11",
+    "@hookform/resolvers": "^5.2.2",
     "@prisma/client": "5.16.2",
     "@radix-ui/react-alert-dialog": "^1.1.14",
     "@radix-ui/react-toast": "^1.2.14",
