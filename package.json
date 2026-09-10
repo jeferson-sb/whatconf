@@ -59,7 +59,7 @@
     "taze": "^19.14.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
-    "vitest": "^3.2.7"
+    "vitest": "^4.1.11"
   },
   "engines": {
     "node": "^24"
