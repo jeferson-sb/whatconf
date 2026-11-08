@@ -18,7 +18,7 @@ const creationValidationSchema = z.object({
     .max(300, { message: 'Maximum of 300 characters' })
     .optional(),
   link: z
-    .string({ required_error: 'Link is required' })
+    .string({ error: 'Link is required' })
     .url({ message: 'Invalid URL' }),
   location: z.string().min(1, { message: 'Location is required' }),
   virtual: z.boolean().default(false),
